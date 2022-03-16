@@ -9,9 +9,7 @@ import { ToolbarComponent } from './toolbar.component';
       ToolbarComponent
     ], 
     exports: [
-      ToolbarComponent,
-      MatIconModule,
-      MatToolbarModule
+      ToolbarComponent
     ],
     imports: [
         MatIconModule,
