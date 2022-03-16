@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { TodoListItemsService } from '../todo-items.service';
+import { TodoListItemsService } from '../../services/todo-items.service';
 
 @Component({
   selector: 'todo-input',
   templateUrl: './todo-input.component.html',
   styleUrls: ['./todo-input.component.scss']
 })
-export class TodoInputComponent implements Model {
+export class TodoInputComponent {
   public value: string = ''
 
   constructor(private list: TodoListItemsService) {}
@@ -17,8 +17,4 @@ export class TodoInputComponent implements Model {
       this.value = '';
     }
   }
-}
-
-interface Model {
-  value: string;
 }

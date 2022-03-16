@@ -9,17 +9,20 @@ import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input'; 
 import { MatIconModule } from '@angular/material/icon'; 
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button'; 
+import { MatDialogModule, MatDialog } from '@angular/material/dialog'; 
 
 //app modules
-import { ToolbarModule } from './toolbar.component/toolbar.module';
+import { ToolbarModule } from './components/toolbar.component/toolbar.module';
 
 //app components
 import { AppComponent } from './app.component';
-import { TodoInputComponent } from './todo-input.component/todo-input.component';
-import { TodoListComponent } from './todo-list.component/todo-list.component';
+import { TodoInputComponent } from './components/todo-input.component/todo-input.component';
+import { TodoListComponent } from './components/todo-list.component/todo-list.component';
+import { DialogComponent } from './components/dialog.component/dialog.component';
 
 //app services
-import { TodoListItemsService } from './todo-items.service';
+import { TodoListItemsService } from './services/todo-items.service';
 
 
 
@@ -27,7 +30,8 @@ import { TodoListItemsService } from './todo-items.service';
   declarations: [
     AppComponent,
     TodoInputComponent,
-    TodoListComponent
+    TodoListComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +41,11 @@ import { TodoListItemsService } from './todo-items.service';
     MatListModule,
     MatInputModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule,
+    MatDialogModule
   ],
-  providers: [TodoListItemsService],
+  providers: [TodoListItemsService, MatDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
