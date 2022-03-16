@@ -10,7 +10,14 @@ import { DialogComponent } from '../dialog.component/dialog.component';
 })
 export class TodoListComponent {    
     constructor(public list: TodoListItemsService, public dialog: MatDialog) {}
-    openItem(item: TodoItem) {
+    
+    openItem(item: TodoItem, event: any) {
+      const element: HTMLInputElement = event.target;
+        if (element.tagName == "INPUT" && element.type == "checkbox") return;
         this.dialog.open(DialogComponent, {data: item});
+    }
+
+    toggleCheck(item: TodoItem) {
+      item.done = !item.done;
     }
 }

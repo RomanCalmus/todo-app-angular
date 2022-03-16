@@ -4,17 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class TodoListItemsService {
-  items: TodoItems = [{
-    title: 'item1', 
-    description: 'description'
-  }]
+  items: TodoItems = [defaultItem]
   
-  getList(): TodoItems {
+  getItems(): TodoItems {
     return this.items;
   }
 
   setItem(title: string, description?: string) {
-    this.items.push({title, description: ''});
+    if (title.length == 0) return;
+    if (!description) description = '';
+
+    this.items.push({title, description, done: false});
   }
 }
 
@@ -22,5 +22,12 @@ export type TodoItems = Array<TodoItem>;
 
 export interface TodoItem {
   title: string,
-  description: string
+  description: string,
+  done: boolean
+}
+
+const defaultItem: TodoItem = {
+  title: 'item1', 
+  description: 'description',
+  done: true
 }

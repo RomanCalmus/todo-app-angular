@@ -1,11 +1,8 @@
-<mat-selection-list>
-    <mat-list-option *ngFor="let todoItem of list.getList()" (click)="openItem(todoItem)"> 
+<mat-selection-list #shoes>
+    <mat-list [ngClass]="{'checked': todoItem.done}" *ngFor="let todoItem of list.getItems()" 
+      (click)="openItem(todoItem, $event)"> 
+      <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
       <span>{{todoItem.title}}</span>
       <span>{{todoItem.description}}</span>
-      <!-- <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-        
-      </button> -->
-
-      <!-- <div><mat-icon>delete</mat-icon></div> -->
-    </mat-list-option>
+    </mat-list>
 </mat-selection-list>
