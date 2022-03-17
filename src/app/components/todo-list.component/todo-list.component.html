@@ -1,5 +1,5 @@
 <mat-selection-list #shoes>
-    <mat-list [ngClass]="{'checked': todoItem.done}" *ngFor="let todoItem of list.getItems()" 
+    <mat-list *ngFor="let todoItem of list.getItems()" [ngClass]="{'checked': todoItem.done}" 
       (click)="openItem(todoItem, $event)"> 
       <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
       <span>{{todoItem.title}}</span>

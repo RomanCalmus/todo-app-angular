@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TodoListItemsService, TodoItem } from '../../services/todo-items.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog.component/dialog.component';
+import { getRandomRgbaColor } from 'src/app/misc/colors';
 
 @Component({
   selector: 'todo-list',
@@ -20,4 +21,5 @@ export class TodoListComponent {
     toggleCheck(item: TodoItem) {
       item.done = !item.done;
     }
+
 }

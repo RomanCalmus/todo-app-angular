@@ -9,11 +9,17 @@ import { TodoListItemsService } from '../../services/todo-items.service';
 export class TodoInputComponent {
   public value: string = ''
 
-  constructor(private list: TodoListItemsService) {}
+  constructor(private list: TodoListItemsService) {
+    this.list.addItem({
+      title: 'item1', 
+      description: 'description',
+      done: false
+    })
+  }
 
   createTodo(key: string) {
     if (key == 'Enter') {
-      this.list.setItem(this.value);
+      this.list.createItem(this.value);
       this.value = '';
     }
   }
