@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TodoListItemsService } from '../../services/todo-items.service';
 
 @Component({
   selector: 'todo-input',
@@ -9,18 +8,18 @@ import { TodoListItemsService } from '../../services/todo-items.service';
 export class TodoInputComponent {
   public value: string = ''
 
-  constructor(private list: TodoListItemsService) {
-    this.list.addItem({
-      title: 'item1', 
-      description: 'description',
-      done: false
-    })
+  constructor() {
+    // this.list.addItem({
+    //   title: 'item1', 
+    //   description: 'description',
+    //   done: false
+    // })
   }
 
   createTodo(key: string) {
-    if (key == 'Enter') {
-      this.list.createItem(this.value);
-      this.value = '';
-    }
+    // if (key == 'Enter') {
+    //   this.list.createItem(this.value);
+    //   this.value = '';
+    // }
   }
 }

@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
+export type TodoItems = Array<TodoItem>;
 
-@Injectable({
-  providedIn: 'root',
-})
-export class TodoListItemsService {
+export interface TodoItem {
+  title: string,
+  description: string,
+  done: boolean
+}
+
+export class TodoList {
   items: TodoItems = []
   doneItems: TodoItems = []
 
@@ -74,12 +77,4 @@ export class TodoListItemsService {
   isFirstItem(item: TodoItem) {
     return this.items.indexOf(item) === 0;
   }
-}
-
-export type TodoItems = Array<TodoItem>;
-
-export interface TodoItem {
-  title: string,
-  description: string,
-  done: boolean
 }

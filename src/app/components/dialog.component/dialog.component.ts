@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { TodoItem } from "../../services/todo-items.service";
+import { TodoItem } from "../../clases/todo-list";
 
 @Component({
     templateUrl: './dialog.component.html'

@@ -1,6 +1,19 @@
 .cards-layout {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
+    display: flex;
+
+    div {
+        flex: 1;
+    }
+
+    .cards {
+        flex: 4;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+    
+        // card {
+        //     
+        // }
+    }
 }

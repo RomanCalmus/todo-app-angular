@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TodoListItemsService, TodoItem } from '../../services/todo-items.service';
+import { TodoList, TodoItem } from '../../clases/todo-list';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog.component/dialog.component';
 import { getRandomRgbaColor } from 'src/app/misc/colors';
@@ -14,7 +14,10 @@ export class TodoListComponent {
     currentEditItem: TodoItem | undefined
     value: string = ''
     isShowDoneItems: boolean = true
-    constructor(public list: TodoListItemsService, public dialog: MatDialog) {}
+    list: TodoList
+    constructor(public dialog: MatDialog) {
+      this.list = new TodoList();
+    }
     
     openItem(item: TodoItem, event: any) {
       const element: HTMLInputElement = event.target;

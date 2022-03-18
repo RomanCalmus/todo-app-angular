@@ -26,8 +26,6 @@ import { DialogComponent } from './components/dialog.component/dialog.component'
 import { AutofocusDirective } from './autofocus';
 
 //app services
-import { TodoListItemsService } from './services/todo-items.service';
-
 
 
 @NgModule({
@@ -53,7 +51,7 @@ import { TodoListItemsService } from './services/todo-items.service';
     MatDialogModule,
     MatCardModule
   ],
-  providers: [TodoListItemsService, MatDialog],
+  providers: [MatDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
