@@ -13,6 +13,7 @@ export class TodoListComponent {
     isNewEdit: boolean = false
     currentEditItem: TodoItem | undefined
     value: string = ''
+    isShowDoneItems: boolean = true
     constructor(public list: TodoListItemsService, public dialog: MatDialog) {}
     
     openItem(item: TodoItem, event: any) {

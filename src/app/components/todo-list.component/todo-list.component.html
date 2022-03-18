@@ -19,11 +19,19 @@
     </mat-form-field> -->
     <div class="new-task" *ngIf="!currentEditItem" (click)="createNewItem()">+Новая задача</div>
 
-    <span  mat-subheader *ngIf="list.doneItems.length">What was already done ({{list.doneItems.length}}):</span>
-    <mat-list *ngFor="let todoItem of list.doneItems" [ngClass]="{'checked': todoItem.done}" 
-      (click)="openItem(todoItem, $event)"> 
-      <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
-      <span>{{todoItem.title}}</span>
-      <span>{{todoItem.description}}</span>
-    </mat-list>
+    <div class="done">
+      <span   *ngIf="list.doneItems.length" (click)="isShowDoneItems = !isShowDoneItems">
+      <span class="done-title" [ngClass]="{'closed': !isShowDoneItems}">What was already done ({{list.doneItems.length}}):</span></span>
+    
+      <div *ngIf="isShowDoneItems" class="done-items">
+        <mat-list *ngFor="let todoItem of list.doneItems" [ngClass]="{'checked': todoItem.done}"
+          class="todo-item"> 
+            <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
+            <span>{{todoItem.title}}</span>
+            <span>{{todoItem.description}}</span>
+          </mat-list>
+      </div>
+    </div>
+    
+    
 </mat-selection-list>

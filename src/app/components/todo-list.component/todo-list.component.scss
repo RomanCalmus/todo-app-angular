@@ -11,3 +11,21 @@ mat-list.checked {
 .new-task {
     margin-top: 5px;
 }
+
+.done {
+    color: rgba(0,0,0,.54);
+    margin-top: 10px;
+    .done-title {
+        cursor: pointer;
+    }
+
+    .done-title::before {
+        content: "v";
+        margin-right: 5px;
+    }
+    
+    .done-title.closed::before {
+        content: ">";
+    }
+}
+
