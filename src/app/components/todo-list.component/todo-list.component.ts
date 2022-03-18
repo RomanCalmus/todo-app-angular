@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { TodoList, TodoItem } from '../../clases/todo-list';
+import { TodoList, TodoItem } from '../../classes/todo-list';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog.component/dialog.component';
-import { getRandomRgbaColor } from 'src/app/misc/colors';
 
 @Component({
   selector: 'todo-list',

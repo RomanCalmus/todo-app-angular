@@ -23,7 +23,7 @@ import { CardListComponent } from './components/cards-list.component/cards-list.
 import { TodoInputComponent } from './components/todo-input.component/todo-input.component';
 import { TodoListComponent } from './components/todo-list.component/todo-list.component';
 import { DialogComponent } from './components/dialog.component/dialog.component';
-import { AutofocusDirective } from './autofocus';
+import { AutofocusDirective } from './derectives/autofocus.derective';
 
 //app services
 
