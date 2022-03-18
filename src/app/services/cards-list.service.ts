@@ -6,11 +6,12 @@ import { Injectable } from "@angular/core";
 export class CardsListService {
     cards: Array<Card> = []
 
-    createCard(title: string) {
-        this.cards.push({title});
+    createCard(title: string, tags: string[] = []) {
+        this.cards.push({title, tags});
     }
 }
 
 export interface Card {
-    title: string
+    title: string,
+    tags: string[]
 }

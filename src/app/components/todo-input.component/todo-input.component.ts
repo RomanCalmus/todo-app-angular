@@ -10,7 +10,7 @@ export class TodoInputComponent {
   public value: string = ''
 
   constructor(protected cardsService: CardsListService) {
-    this.cardsService.createCard('Card #1');
+    this.cardsService.createCard('Card #1', ['tag1', 'tag2', 'tag3']);
   }
 
   createTodo(key: string) {
