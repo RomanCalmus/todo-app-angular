@@ -56,7 +56,7 @@ export class TodoListComponent {
           if (this.currentEditItem.title.length !== 0) break;
           const itemForRemove = this.currentEditItem;
           this.editItem(this.list.getPrevItemBefore(this.currentEditItem));
-          this.list.removeItem(itemForRemove);
+          this.removeThisItem(itemForRemove);
           break;
         case 'Escape':
           if (!this.currentEditItem) break;
@@ -65,11 +65,16 @@ export class TodoListComponent {
       }
     }
 
+    removeThisItem(item: TodoItem) {
+      this.list.removeItem(item);
+    }
+
     clearCurrentitemEdit() {
       this.currentEditItem = undefined;
     }
 
     editItem(item: TodoItem) {
+      if (this.currentEditItem === item) return;
       this.currentEditItem = item;
     }
 

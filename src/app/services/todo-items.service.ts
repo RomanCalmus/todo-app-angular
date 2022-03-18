@@ -38,8 +38,12 @@ export class TodoListItemsService {
     to.push(item);
   }
 
+  private getItemList(item: TodoItem): TodoItems {
+    return item.done ? this.doneItems : this.items;
+  }
+
   removeItem(item: TodoItem) {
-    this.removeItemFrom(item, this.items);
+    this.removeItemFrom(item, this.getItemList(item));
   }
 
   getNextItemAfter(item: TodoItem): TodoItem {

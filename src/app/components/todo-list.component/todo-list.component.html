@@ -1,22 +1,22 @@
-<mat-selection-list #shoes>
-    <mat-list *ngFor="let todoItem of list.items" [ngClass]="{'checked': todoItem.done}" 
-      (click)="editItem(todoItem)"> 
+<mat-selection-list>
+    <mat-list *ngFor="let todoItem of list.items" [ngClass]="{'checked': todoItem.done, 'current-item': currentEditItem === todoItem}" 
+      (click)="editItem(todoItem)" class="todo-item"> 
       <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
       <span *ngIf="currentEditItem !== todoItem">
         <span>{{todoItem.title}}</span>
         <span class="todo-item-description">{{todoItem.description}}</span>
-      </span>
+        <span class="remove-item" (click)="removeThisItem(todoItem)">x</span></span>
+      
+      <span class="input-wrap"><input matInput class="todo-item-edit" *ngIf="currentEditItem === todoItem" [(ngModel)]="todoItem.title"  type="text" 
+          (blur)="clearCurrentitemEdit()" (keydown)="onKeyDownEdit($event.key)" [autofocus]="true"></span>
 
-      <mat-form-field *ngIf="currentEditItem === todoItem">
-        <input matInput [(ngModel)]="todoItem.title"  type="text" 
-          (blur)="clearCurrentitemEdit()" (keydown)="onKeyDownEdit($event.key)" [autofocus]="true">
-      </mat-form-field> 
     </mat-list>
 
     <!-- <mat-form-field>
         <input matInput [(ngModel)]="value"  type="text" placeholder="Новая задача" 
           (blur)="applyNewItem()" (keyup)="keyUp($event.key)">
     </mat-form-field> -->
+
     <div class="new-task" *ngIf="!currentEditItem" (click)="createNewItem()">+Новая задача</div>
 
     <div class="done">
@@ -29,6 +29,7 @@
             <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
             <span>{{todoItem.title}}</span>
             <span>{{todoItem.description}}</span>
+            <span class="remove-item" (click)="removeThisItem(todoItem)">x</span>
           </mat-list>
       </div>
     </div>
