@@ -10,16 +10,52 @@ import { getRandomRgbaColor } from 'src/app/misc/colors';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent {    
+    isNewEdit: boolean = false
+    currentEditItem: TodoItem | undefined
+    value: string = ''
     constructor(public list: TodoListItemsService, public dialog: MatDialog) {}
     
     openItem(item: TodoItem, event: any) {
       const element: HTMLInputElement = event.target;
-        if (element.tagName == "INPUT" && element.type == "checkbox") return;
-        this.dialog.open(DialogComponent, {data: item});
+      if (element.tagName == "INPUT" && element.type == "checkbox") return;
+        //this.dialog.open(DialogComponent, {data: item});
     }
 
     toggleCheck(item: TodoItem) {
-      item.done = !item.done;
+      this.list.toggleItem(item);
     }
 
+    applyNewItem() {
+      this.isNewEdit = !this.isNewEdit;
+      if (!this.value) return;
+      this.list.createItem(this.value);
+      this.value = '';
+    }
+
+    keyUp(key: string) {
+      if (key != 'Enter') return;
+      this.applyNewItem();
+    }
+
+    keyUpEdit(key: string) {
+      if (key != 'Enter') return;
+      if (this.currentEditItem) {
+        this.currentEditItem = this.list.getNextItemAfter(this.currentEditItem);
+      } else {
+        this.currentEditItem = this.list.createItem();
+      }
+    }
+
+    clearCurrentitemEdit() {
+      this.currentEditItem = undefined;
+    }
+
+    editItem(item: TodoItem) {
+      this.currentEditItem = item;
+    }
+
+    createNewItem() {
+      const item = this.list.createItem('');
+      this.currentEditItem = item;
+    }
 }

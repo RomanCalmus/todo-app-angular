@@ -20,7 +20,7 @@ import { AppComponent } from './app.component';
 import { TodoInputComponent } from './components/todo-input.component/todo-input.component';
 import { TodoListComponent } from './components/todo-list.component/todo-list.component';
 import { DialogComponent } from './components/dialog.component/dialog.component';
-
+import { AutofocusDirective } from './autofocus';
 //app services
 import { TodoListItemsService } from './services/todo-items.service';
 
@@ -31,7 +31,8 @@ import { TodoListItemsService } from './services/todo-items.service';
     AppComponent,
     TodoInputComponent,
     TodoListComponent,
-    DialogComponent
+    DialogComponent,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,
