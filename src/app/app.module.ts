@@ -18,10 +18,13 @@ import { ToolbarModule } from './components/toolbar.component/toolbar.module';
 
 //app components
 import { AppComponent } from './app.component';
+import { CardComponent } from './components/card.component/card.component';
+import { CardListComponent } from './components/cards-list/cards-list.component';
 import { TodoInputComponent } from './components/todo-input.component/todo-input.component';
 import { TodoListComponent } from './components/todo-list.component/todo-list.component';
 import { DialogComponent } from './components/dialog.component/dialog.component';
 import { AutofocusDirective } from './autofocus';
+
 //app services
 import { TodoListItemsService } from './services/todo-items.service';
 
@@ -33,7 +36,9 @@ import { TodoListItemsService } from './services/todo-items.service';
     TodoInputComponent,
     TodoListComponent,
     DialogComponent,
-    AutofocusDirective
+    AutofocusDirective,
+    CardComponent,
+    CardListComponent
   ],
   imports: [
     BrowserModule,
