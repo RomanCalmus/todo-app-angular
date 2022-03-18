@@ -13,14 +13,9 @@ export class TodoListComponent {
     value: string = ''
     isShowDoneItems: boolean = true
     list: TodoList
-    constructor(public dialog: MatDialog) {
+
+    constructor() {
       this.list = new TodoList();
-    }
-    
-    openItem(item: TodoItem, event: any) {
-      const element: HTMLInputElement = event.target;
-      if (element.tagName == "INPUT" && element.type == "checkbox") return;
-        //this.dialog.open(DialogComponent, {data: item});
     }
 
     toggleCheck(item: TodoItem) {

@@ -1,0 +1,25 @@
+.main {
+    display: flex;
+
+    div {
+        flex: 1;
+    }
+
+    .todo {
+        flex: 3;
+    }
+
+    .todo-input-wrapper {
+        display: flex;
+
+        span {
+            display: inline-block;
+            width: 300px;
+            flex: 1;
+        }
+
+        todo-input {
+            flex: 3;
+        }
+    }
+}

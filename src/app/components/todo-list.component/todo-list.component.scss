@@ -4,10 +4,6 @@ mat-list.checked {
     width: 100%;
 }
 
-mat-form-field {
-    width: 90%;
-}
-
 .todo-item-description {
     margin-left: 3px;
     color: gainsboro;
@@ -26,8 +22,8 @@ mat-form-field {
     border-top: 1px solid  white;
     border-bottom: 1px solid white;
 
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 
     .remove-item {
         font-weight: bold;

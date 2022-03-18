@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CardsListService } from 'src/app/services/cards-list.service';
 
 @Component({
   selector: 'todo-input',
@@ -8,18 +9,14 @@ import { Component } from '@angular/core';
 export class TodoInputComponent {
   public value: string = ''
 
-  constructor() {
-    // this.list.addItem({
-    //   title: 'item1', 
-    //   description: 'description',
-    //   done: false
-    // })
+  constructor(protected cardsService: CardsListService) {
+    this.cardsService.createCard('Card #1');
   }
 
   createTodo(key: string) {
-    // if (key == 'Enter') {
-    //   this.list.createItem(this.value);
-    //   this.value = '';
-    // }
+    if (key == 'Enter') {
+      this.cardsService.createCard(this.value);
+      this.value = '';
+    }
   }
 }
