@@ -1,38 +1,49 @@
-<mat-selection-list>
-    <mat-list *ngFor="let todoItem of list.items" [ngClass]="{'checked': todoItem.done, 'current-item': currentEditItem === todoItem}" 
-      (click)="editItem(todoItem)" class="todo-item"> 
-      <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
-      <span *ngIf="currentEditItem !== todoItem">
-        <span>{{todoItem.title}}</span>
-        <span class="todo-item-description">{{todoItem.description}}</span>
-        <span class="remove-item" (click)="removeThisItem(todoItem)">x</span></span>
-      
-      <span class="input-wrap"><input matInput class="todo-item-edit" *ngIf="currentEditItem === todoItem" [(ngModel)]="todoItem.title"  type="text" 
-          (blur)="clearCurrentitemEdit()" (keydown)="onKeyDownEdit($event.key)" [autofocus]="true"></span>
+<mat-card class="example-card">
+  <mat-card-title>Shiba Inu</mat-card-title>
+  <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  <mat-card-content>
 
-    </mat-list>
-
-    <!-- <mat-form-field>
-        <input matInput [(ngModel)]="value"  type="text" placeholder="Новая задача" 
-          (blur)="applyNewItem()" (keyup)="keyUp($event.key)">
-    </mat-form-field> -->
-
-    <div class="new-task" *ngIf="!currentEditItem" (click)="createNewItem()">+Новая задача</div>
-
-    <div class="done">
-      <span   *ngIf="list.doneItems.length" (click)="isShowDoneItems = !isShowDoneItems">
-      <span class="done-title" [ngClass]="{'closed': !isShowDoneItems}">What was already done ({{list.doneItems.length}}):</span></span>
-    
-      <div *ngIf="isShowDoneItems" class="done-items">
-        <mat-list *ngFor="let todoItem of list.doneItems" [ngClass]="{'checked': todoItem.done}"
-          class="todo-item"> 
-            <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
+    <mat-selection-list>
+        <mat-list *ngFor="let todoItem of list.items" [ngClass]="{'checked': todoItem.done, 'current-item': currentEditItem === todoItem}" 
+          (click)="editItem(todoItem)" class="todo-item"> 
+          <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
+          <span *ngIf="currentEditItem !== todoItem">
             <span>{{todoItem.title}}</span>
-            <span>{{todoItem.description}}</span>
-            <span class="remove-item" (click)="removeThisItem(todoItem)">x</span>
-          </mat-list>
-      </div>
-    </div>
-    
-    
-</mat-selection-list>
+            <span class="todo-item-description">{{todoItem.description}}</span>
+            <span class="remove-item" (click)="removeThisItem(todoItem)">x</span></span>
+          
+          <span class="input-wrap"><input matInput class="todo-item-edit" *ngIf="currentEditItem === todoItem" [(ngModel)]="todoItem.title"  type="text" 
+              (blur)="clearCurrentitemEdit()" (keydown)="onKeyDownEdit($event.key)" [autofocus]="true"></span>
+
+        </mat-list>
+
+        <!-- <mat-form-field>
+            <input matInput [(ngModel)]="value"  type="text" placeholder="Новая задача" 
+              (blur)="applyNewItem()" (keyup)="keyUp($event.key)">
+        </mat-form-field> -->
+
+        <div class="new-task" *ngIf="!currentEditItem" (click)="createNewItem()">+Новая задача</div>
+
+        <div class="done">
+          <span   *ngIf="list.doneItems.length" (click)="isShowDoneItems = !isShowDoneItems">
+          <span class="done-title" [ngClass]="{'closed': !isShowDoneItems}">What was already done ({{list.doneItems.length}}):</span></span>
+        
+          <div *ngIf="isShowDoneItems" class="done-items">
+            <mat-list *ngFor="let todoItem of list.doneItems" [ngClass]="{'checked': todoItem.done}"
+              class="todo-item"> 
+                <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
+                <span>{{todoItem.title}}</span>
+                <span>{{todoItem.description}}</span>
+                <span class="remove-item" (click)="removeThisItem(todoItem)">x</span>
+              </mat-list>
+          </div>
+        </div>
+        
+        
+    </mat-selection-list>
+</mat-card-content>
+<mat-card-actions>
+  <button mat-button>LIKE</button>
+  <button mat-button>SHARE</button>
+</mat-card-actions>
+</mat-card>

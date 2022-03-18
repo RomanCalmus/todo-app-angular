@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button'; 
 import { MatDialogModule, MatDialog } from '@angular/material/dialog'; 
+import { MatCardModule } from '@angular/material/card'; 
 
 //app modules
 import { ToolbarModule } from './components/toolbar.component/toolbar.module';
@@ -44,7 +45,8 @@ import { TodoListItemsService } from './services/todo-items.service';
     MatIconModule,
     FormsModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [TodoListItemsService, MatDialog],
   bootstrap: [AppComponent]
