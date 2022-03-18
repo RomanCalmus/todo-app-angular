@@ -37,12 +37,30 @@ export class TodoListComponent {
       this.applyNewItem();
     }
 
-    keyUpEdit(key: string) {
-      if (key != 'Enter') return;
-      if (this.currentEditItem) {
-        this.currentEditItem = this.list.getNextItemAfter(this.currentEditItem);
-      } else {
-        this.currentEditItem = this.list.createItem();
+    onKeyDownEdit(key: string) {
+      if (!this.currentEditItem) return;
+      switch (key) {
+        case 'Enter': 
+          this.editItem(this.list.getNextItemAfter(this.currentEditItem));
+          break;
+        case 'ArrowUp':
+          if (this.list.isFirstItem(this.currentEditItem)) break;
+          this.editItem(this.list.getPrevItemBefore(this.currentEditItem));
+          break;
+        case 'ArrowDown':
+          if (this.list.isLastItem(this.currentEditItem)) break;
+          this.editItem(this.list.getNextItemAfter(this.currentEditItem));
+          break;
+        case 'Backspace':
+          if (this.currentEditItem.title.length !== 0) break;
+          const itemForRemove = this.currentEditItem;
+          this.editItem(this.list.getPrevItemBefore(this.currentEditItem));
+          this.list.removeItem(itemForRemove);
+          break;
+        case 'Escape':
+          if (!this.currentEditItem) break;
+          this.clearCurrentitemEdit();
+          break;
       }
     }
 
@@ -55,7 +73,7 @@ export class TodoListComponent {
     }
 
     createNewItem() {
-      const item = this.list.createItem('');
-      this.currentEditItem = item;
+      const item = this.list.createItem();
+      this.editItem(item);
     }
 }

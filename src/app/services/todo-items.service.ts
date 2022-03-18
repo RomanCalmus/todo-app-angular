@@ -38,6 +38,10 @@ export class TodoListItemsService {
     to.push(item);
   }
 
+  removeItem(item: TodoItem) {
+    this.removeItemFrom(item, this.items);
+  }
+
   getNextItemAfter(item: TodoItem): TodoItem {
     const i = this.items.indexOf(item);
 
@@ -46,6 +50,25 @@ export class TodoListItemsService {
     } else {
       return this.items[i + 1];
     }
+  }
+
+  getPrevItemBefore(item: TodoItem): TodoItem {
+    const i = this.items.indexOf(item);
+
+    if (i === 0) {
+      return this.items[0];
+    } else {
+      return this.items[i - 1];
+    }
+  }
+
+  isLastItem(item: TodoItem) {
+    const i = this.items.indexOf(item);
+    return i === this.items.length - 1;
+  }
+
+  isFirstItem(item: TodoItem) {
+    return this.items.indexOf(item) === 0;
   }
 }
 

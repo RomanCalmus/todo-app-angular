@@ -4,20 +4,20 @@
       <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
       <span *ngIf="currentEditItem !== todoItem">
         <span>{{todoItem.title}}</span>
-        <span>{{todoItem.description}}</span>
+        <span class="todo-item-description">{{todoItem.description}}</span>
       </span>
 
       <mat-form-field *ngIf="currentEditItem === todoItem">
         <input matInput [(ngModel)]="todoItem.title"  type="text" 
-          (blur)="clearCurrentitemEdit()" (keyup)="keyUpEdit($event.key)" [autofocus]="true">
+          (blur)="clearCurrentitemEdit()" (keydown)="onKeyDownEdit($event.key)" [autofocus]="true">
       </mat-form-field> 
     </mat-list>
 
     <!-- <mat-form-field>
         <input matInput [(ngModel)]="value"  type="text" placeholder="Новая задача" 
           (blur)="applyNewItem()" (keyup)="keyUp($event.key)">
-    </mat-form-field>  -->
-    <span (click)="createNewItem()">+Новая задача</span>
+    </mat-form-field> -->
+    <div class="new-task" *ngIf="!currentEditItem" (click)="createNewItem()">+Новая задача</div>
 
     <span  mat-subheader *ngIf="list.doneItems.length">What was already done ({{list.doneItems.length}}):</span>
     <mat-list *ngFor="let todoItem of list.doneItems" [ngClass]="{'checked': todoItem.done}" 
