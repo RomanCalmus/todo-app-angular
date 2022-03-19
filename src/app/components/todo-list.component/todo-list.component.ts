@@ -1,27 +1,32 @@
 import { Component, Input, Output } from '@angular/core';
 import { TodoList, TodoItem } from '../../classes/todo-list';
-import { MatDialog } from '@angular/material/dialog';
-import { CardsListComponent } from '../cards-list.component/cards-list.component';
 import { CardsListService } from 'src/app/services/cards-list.service';
+
+@Component({
+  selector: 'todo-list-readonly',
+  templateUrl: './todo-list-readonly.component.html',
+  styleUrls: ['./todo-list.component.scss']
+})
+export class TodoListReadOnlyComponent {   
+  list: TodoList = new TodoList();
+  @Input() cardId: any = -1;
+  constructor(private lists: CardsListService) {}
+
+  ngOnInit() {
+    this.list = this.lists.getTodoListByCardId(this.cardId);
+  }
+}
 
 @Component({
   selector: 'todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent {    
+export class TodoListWritebaleComponent extends TodoListReadOnlyComponent {    
     isNewEdit: boolean = false
     currentEditItem: TodoItem | undefined
     value: string = ''
     isShowDoneItems: boolean = true
-    list: TodoList = new TodoList();
-    @Input() cardId: any = -1;
-
-    constructor(private lists: CardsListService) {}
-
-    ngOnInit() {
-      this.list = this.lists.getTodoListByCardId(this.cardId);
-    }
 
     toggleCheck(item: TodoItem) {
       this.list.toggleItem(item);

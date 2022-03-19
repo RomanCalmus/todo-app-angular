@@ -9,13 +9,7 @@
     
     <span class="input-wrap"><input matInput class="todo-item-edit" *ngIf="currentEditItem === todoItem" [(ngModel)]="todoItem.title"  type="text" 
         (blur)="clearCurrentitemEdit()" (keydown)="onKeyDownEdit($event)" [autofocus]="true"></span>
-
   </mat-list>
-
-  <!-- <mat-form-field>
-      <input matInput [(ngModel)]="value"  type="text" placeholder="Новая задача" 
-        (blur)="applyNewItem()" (keyup)="keyUp($event.key)">
-  </mat-form-field> -->
 
   <div class="new-task" *ngIf="!currentEditItem" (click)="createNewItem()">+Новая задача</div>
 

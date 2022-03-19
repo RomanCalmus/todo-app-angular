@@ -21,7 +21,7 @@ import { AppComponent } from './app.component';
 import { CardComponent } from './components/card.component/card.component';
 import { CardsListComponent } from './components/cards-list.component/cards-list.component';
 import { TodoInputComponent } from './components/todo-input.component/todo-input.component';
-import { TodoListComponent } from './components/todo-list.component/todo-list.component';
+import { TodoListWritebaleComponent, TodoListReadOnlyComponent } from './components/todo-list.component/todo-list.component';
 //import { DialogComponent } from './components/dialog.component/dialog.component';
 import { AutofocusDirective } from './derectives/autofocus.derective';
 
@@ -32,7 +32,8 @@ import { AutofocusDirective } from './derectives/autofocus.derective';
   declarations: [
     AppComponent,
     TodoInputComponent,
-    TodoListComponent,
+    TodoListWritebaleComponent,
+    TodoListReadOnlyComponent,
  //   DialogComponent,
     AutofocusDirective,
     CardsListComponent,
