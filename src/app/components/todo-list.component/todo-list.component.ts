@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { TodoList, TodoItem } from '../../classes/todo-list';
 import { MatDialog } from '@angular/material/dialog';
+import { CardsListComponent } from '../cards-list.component/cards-list.component';
+import { CardsListService } from 'src/app/services/cards-list.service';
 
 @Component({
   selector: 'todo-list',
@@ -12,10 +14,13 @@ export class TodoListComponent {
     currentEditItem: TodoItem | undefined
     value: string = ''
     isShowDoneItems: boolean = true
-    list: TodoList
+    list: TodoList = new TodoList();
+    @Input() cardId: any = -1;
 
-    constructor() {
-      this.list = new TodoList();
+    constructor(private lists: CardsListService) {}
+
+    ngOnInit() {
+      this.list = this.lists.getTodoListByCardId(this.cardId);
     }
 
     toggleCheck(item: TodoItem) {
@@ -34,7 +39,9 @@ export class TodoListComponent {
       this.applyNewItem();
     }
 
-    onKeyDownEdit(key: string) {
+    onKeyDownEdit(event: KeyboardEvent) {
+      const {key} = event;
+
       if (!this.currentEditItem) return;
       switch (key) {
         case 'Enter': 
@@ -55,6 +62,7 @@ export class TodoListComponent {
           this.removeThisItem(itemForRemove);
           break;
         case 'Escape':
+          event.stopPropagation();
           if (!this.currentEditItem) break;
           this.clearCurrentitemEdit();
           break;

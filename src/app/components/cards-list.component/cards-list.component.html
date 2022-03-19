@@ -1,19 +1,17 @@
 <div class="cards-layout">
   <div></div>
   <div class="cards">
-    <div *ngFor="let card of cardsService.cards">
-      <mat-card class="example-card">
+    <div *ngFor="let card of cardsService.cards" >
+      <mat-card class="example-card closed" (click)="openCard(card)" *ngIf="card.id !== openedCardId">
         <mat-card-title>{{card.title}}</mat-card-title>
         <mat-card-subtitle *ngIf="card.tags.length">
           <span *ngFor="let tag of card.tags" class="card-tag">{{tag}}</span></mat-card-subtitle>
         <mat-card-content>
-          <todo-list></todo-list>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>button 1</button>
-        <button mat-button>button 2</button>
-      </mat-card-actions>
-    </mat-card>
+          <todo-list [cardId]="card.id" ></todo-list></mat-card-content>
+        <mat-card-actions>
+          <button mat-button>button 1</button>
+          <button mat-button>button 2</button></mat-card-actions>
+      </mat-card>
     </div>
   </div>
   <div></div>

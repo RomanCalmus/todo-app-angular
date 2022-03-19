@@ -8,7 +8,7 @@
       <span class="remove-item" (click)="removeThisItem(todoItem)">x</span></span>
     
     <span class="input-wrap"><input matInput class="todo-item-edit" *ngIf="currentEditItem === todoItem" [(ngModel)]="todoItem.title"  type="text" 
-        (blur)="clearCurrentitemEdit()" (keydown)="onKeyDownEdit($event.key)" [autofocus]="true"></span>
+        (blur)="clearCurrentitemEdit()" (keydown)="onKeyDownEdit($event)" [autofocus]="true"></span>
 
   </mat-list>
 
