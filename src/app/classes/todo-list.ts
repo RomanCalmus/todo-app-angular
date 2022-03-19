@@ -2,7 +2,6 @@ export type TodoItems = Array<TodoItem>;
 
 export interface TodoItem {
   title: string,
-  description: string,
   done: boolean
 }
 
@@ -10,9 +9,16 @@ export class TodoList {
   items: TodoItems = []
   doneItems: TodoItems = []
 
-  createItem(title: string = '', description?: string): TodoItem {
-    if (!description) description = '';
-    const item = {title, description, done: false};
+  constructor() {
+    this.createItem('!!!');
+    this.createItem('!!!');
+    this.createItem('!!!');
+    this.createItem('!!!');
+    this.createItem('!!!');
+  }
+
+  createItem(title: string = ''): TodoItem {
+    const item = {title, done: false};
     this.items.push(item);
     return item;
   }

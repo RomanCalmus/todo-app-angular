@@ -29,19 +29,8 @@ export class TodoListWritebaleComponent extends TodoListReadOnlyComponent {
     isShowDoneItems: boolean = true
 
     toggleCheck(item: TodoItem) {
+      this.clearCurrentitemEdit(); 
       this.list.toggleItem(item);
-    }
-
-    applyNewItem() {
-      this.isNewEdit = !this.isNewEdit;
-      if (!this.value) return;
-      this.list.createItem(this.value);
-      this.value = '';
-    }
-
-    keyUp(key: string) {
-      if (key != 'Enter') return;
-      this.applyNewItem();
     }
 
     onKeyDownEdit(event: KeyboardEvent) {

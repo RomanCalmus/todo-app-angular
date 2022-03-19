@@ -19,6 +19,7 @@ import { AutofocusDirective } from './derectives/autofocus.derective';
 
 //app services
 import { CardsListService } from './services/cards-list.service';
+import { StaticInputComponent } from './components/static-input.component/static-input.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { CardsListService } from './services/cards-list.service';
     AutofocusDirective,
     CardsListComponent,
     CardComponent,
+    StaticInputComponent
   ],
   imports : [
     AppRoutingModule,

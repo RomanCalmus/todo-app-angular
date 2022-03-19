@@ -1,30 +1,27 @@
-<mat-selection-list>
-  <mat-list *ngFor="let todoItem of list.items" [ngClass]="{'checked': todoItem.done, 'current-item': currentEditItem === todoItem}" 
-    (click)="editItem(todoItem)" class="todo-item"> 
+<div>
+  <div *ngFor="let todoItem of list.items" [ngClass]="{'checked': todoItem.done, 'current-item': currentEditItem === todoItem}" 
+    (click)="editItem(todoItem)" class="todo-item undone"> 
     <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
-    <span *ngIf="currentEditItem !== todoItem">
-      <span>{{todoItem.title}}</span>
-      <span class="todo-item-description">{{todoItem.description}}</span>
-      <span class="remove-item" (click)="removeThisItem(todoItem)">x</span></span>
-    
-    <span class="input-wrap"><input matInput class="todo-item-edit" *ngIf="currentEditItem === todoItem" [(ngModel)]="todoItem.title"  type="text" 
-        (blur)="clearCurrentitemEdit()" (keydown)="onKeyDownEdit($event)" [autofocus]="true"></span>
-  </mat-list>
 
-  <div class="new-task" *ngIf="!currentEditItem" (click)="createNewItem()">+Новая задача</div>
+    <static-input class="static-input" (keydown)="onKeyDownEdit($event)" (blur)="clearCurrentitemEdit()"
+      [(text)] = "todoItem.title" [isEdit]="currentEditItem === todoItem"></static-input>
+    <span class="remove-item" (click)="removeThisItem(todoItem)">X</span>
+    
+  </div>
+
+  <div class="new-task" [ngClass]="{'hide': !!currentEditItem}" (click)="createNewItem()">+Новая задача</div>
 
   <div class="done">
-    <span   *ngIf="list.doneItems.length" (click)="isShowDoneItems = !isShowDoneItems">
+    <span *ngIf="list.doneItems.length" (click)="isShowDoneItems = !isShowDoneItems">
     <span class="done-title" [ngClass]="{'closed': !isShowDoneItems}">What was already done ({{list.doneItems.length}}):</span></span>
   
     <div *ngIf="isShowDoneItems" class="done-items">
-      <mat-list *ngFor="let todoItem of list.doneItems" [ngClass]="{'checked': todoItem.done}"
-        class="todo-item"> 
+      <mat-list *ngFor="let todoItem of list.doneItems" 
+        class="todo-item checked"> 
           <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
           <span>{{todoItem.title}}</span>
-          <span>{{todoItem.description}}</span>
           <span class="remove-item" (click)="removeThisItem(todoItem)">x</span>
         </mat-list>
     </div>
   </div>
-</mat-selection-list>
+</div>

@@ -1,0 +1,8 @@
+<span (click)="isEdit = !isEdit" >
+    <div class="static-input-text" *ngIf="!isEdit">{{text}}</div>
+    <span class="input-wrap">
+        <input  *ngIf="isEdit" class="todo-item-edit"
+            [(ngModel)]="text"  type="text" (blur)="onBlur($event)"
+            (keydown)="onKeyDownEdit($event)" [autofocus]="true">       
+    </span>
+</span>

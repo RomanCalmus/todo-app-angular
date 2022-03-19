@@ -1,5 +1,5 @@
 <mat-card class="opened-card">
-  <mat-card-title>{{card.title}}</mat-card-title>
+  <mat-card-title><static-input [(text)]="card.title"></static-input></mat-card-title>
   <mat-card-subtitle *ngIf="card.tags.length">
     <span *ngFor="let tag of card.tags" class="card-tag">{{tag}}</span></mat-card-subtitle>
   <mat-card-content>

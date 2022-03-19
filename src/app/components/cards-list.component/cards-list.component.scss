@@ -1,6 +1,5 @@
 .cards-layout {
     .cards {
-        //flex: 4;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 10px;
@@ -12,6 +11,18 @@
 
         .closed {
             cursor: pointer;
+        }
+
+        .mat-card {
+            background-color:rgb(255, 198, 26);
+        }
+
+        .hide {
+            visibility: hidden;
+        }
+
+        mat-card-subtitle.mat-card-subtitle {
+            margin-bottom: 0;
         }
     }
 }

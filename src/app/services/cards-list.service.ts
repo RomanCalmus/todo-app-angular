@@ -18,7 +18,7 @@ export class CardsListService {
 
     getTodoListByCardId(id: number): TodoList {
         const list = TodoLists.get(id);
-        if (!list) throw new Error('Where this todoList?');
+        if (!list) throw new Error(`cannot find TodoList with id:${id}`);
         return list;
     }
 }
