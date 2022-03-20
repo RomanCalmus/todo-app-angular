@@ -67,6 +67,10 @@ mat-card {
 
 
 .done {
+    .todo-item {
+        font-size: 14px;
+        font-weight: normal;
+    }
     color: rgba(0,0,0,.54);
     margin-top: 10px;
     .done-title {
