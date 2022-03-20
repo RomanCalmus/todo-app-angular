@@ -1,4 +1,9 @@
-<mat-card-actions>
-    <button mat-button>button 2</button>
+<mat-card-actions *ngIf="card">
+    <button (click)="stopClick($event)" mat-button [matMenuTriggerFor]="aboveMenu">Color</button>
+        <mat-menu #aboveMenu="matMenu" yPosition="above" [class]="card.color">
+            <button mat-menu-item *ngFor="let color of getColors()" (click)="colorAction(color)">
+                <span class="color-icon" [class]="color"></span>
+                {{color}}</button>
+        </mat-menu>
     <button (click)="removeAction()" mat-button>Remove</button>
 </mat-card-actions>

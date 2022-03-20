@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { CardsListService, Card, PlaceholderTitle } from "src/app/services/cards-list.service";
+import { CardsListService, Card, PlaceholderTitle, CardColor } from "src/app/services/cards-list.service";
 import { CardDialogComponent } from "../card.component/card.component";
 
 @Component({

@@ -13,125 +13,99 @@ body {
     background-color: rgb(212, 205, 205);
 }
 
+.opened-card {
+    .done {
+        font-weight: 500;
+    } 
 
+    static-input {
+        display: inline-block;
+        font-weight: 500;
+        height: 24px;
+        width: 90%;
 
-    mat-card-title {
-        static-input {
-            font-size: 30px;
+        input[type="text"] {
+            font: inherit;
+            background: transparent;
+            color: currentColor;
+            border: none;
+            outline: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: content-box;
+        }
+
+        .static-input-text {
+            margin-top: 2px;
         }
     }   
     
-    .opened-card {
-        .done {
-            font-weight: 500;
-        } 
-    
-        static-input {
-            display: inline-block;
-            font-size: 20px;
-            font-weight: 500;
+    .todo-item.undone {
+        mat-list.mat-list {
             height: 24px;
-            width: 90%;
-    
-            input[type="text"] {
-                font: inherit;
-                background: transparent;
-                color: currentColor;
-                border: none;
-                outline: none;
-                padding: 0;
-                margin: 0;
-                width: 100%;
-                max-width: 100%;
-                box-sizing: content-box;
-            }
-    
-            .static-input-text {
-                margin-top: 2px;
-            }
-        }   
-        
-        .todo-item.undone {
-            mat-list.mat-list {
-                height: 24px;
-            }
-    
-            static-input {
-                margin-left: 22px;
-            }
-    
-            input[type="checkbox"] {
-                position: absolute;
-                top: 8px;  
-    
-                margin-top: 0;
-                margin-bottom: 0;
-    
-                height: 15px;
-                width: 15px;
-                vertical-align:middle;
-            }
         }
-    }
-    
-    mat-list.checked {
-        font-style: italic;
-        text-decoration: line-through;
-        width: 100%;
-    }
-    
-    .todo-item-description {
-        margin-left: 3px;
-        color: gainsboro;
-    }
-    
-    .mat-input-element {
-        width: 90%;
-    }
-    
-    .new-task {
-        margin-top: 5px;
-    }
-    
-    .new-task:hover {
-        cursor: pointer;
-        color: blue;
-    }
-    
-    .todo-item {
-        position: relative;
-        padding-top: 4px;
-        padding-bottom: 4px;
-    
-        .remove-item {
-            font-weight: bold;
-            font-size: 15px;
-            margin: 10px;
-            cursor: pointer;
-            
-            visibility: hidden;
+
+        static-input {
+            margin-left: 22px;
+        }
+
+        input[type="checkbox"] {
             position: absolute;
-            right: 1px;
-            top: -5px;
+            top: 8px;  
+
+            margin-top: 0;
+            margin-bottom: 0;
+
+            height: 15px;
+            width: 15px;
+            vertical-align:middle;
         }
     }
+}
 
-    
+mat-list.checked {
+    font-style: italic;
+    text-decoration: line-through;
+    width: 100%;
+}
 
-    
-    .input-wrap {
-        border-bottom: 1px solid blue;
-    }
+.todo-item-description {
+    margin-left: 3px;
+    color: gainsboro;
+}
 
-    
-    .hide {
-        visibility: hidden;
-    }
+.mat-input-element {
+    width: 90%;
+}
 
-    mat-card-actions.mat-card-actions {
-        padding-bottom: 0;
-        margin-bottom: 0;
-    }
+.new-task {
+    margin-top: 5px;
+}
+
+.new-task:hover {
+    cursor: pointer;
+    color: blue;
+}
+
+
+
+
+
+.input-wrap {
+    border-bottom: 1px solid blue;
+}
+
+
+.hide {
+    visibility: hidden;
+}
+
+mat-card-actions.mat-card-actions {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
 
 
 .cdk-overlay-container {
@@ -139,11 +113,36 @@ body {
         width: 30vw;
     }
 
-    .todo-item:hover {
-        color: blue;
+    mat-card {
+        .todo-item:hover {
+            color: blue;
+
+            .remove-item {
+                visibility: visible;
+            }     
+        }
+
+        static-input:hover {
+            cursor: text;
+        }
     }
 
-    static-input:hover {
-        cursor: text;
+
+    .mat-menu-panel {
+        &.yellow {
+            background-color: rgb(255, 216, 65);
+        }
+        
+        &.red {
+            background-color: rgb(255, 71, 71);
+        }
+        
+        &.gray {
+            background-color: rgb(219, 188, 188);
+        }
+        
+        &.green {
+            background-color: rgb(112, 255, 121);
+        }
     }
 }

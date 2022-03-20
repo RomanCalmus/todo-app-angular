@@ -5,12 +5,27 @@
 
 
 .new-card {
-    background-color: rgba(236, 230, 149, 0.76);
-    border: 1px solid yellow;
-
+    border: 1px solid white;
+    border-radius: 10px;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 15px;
+
+    &.yellow {
+        background-color: rgba(255, 216, 65, 0.8);
+    }
+    
+    &.red {
+        background-color: rgba(255, 71, 71, 0.3);
+    }
+    
+    &.gray {
+        background-color: rgba(219, 188, 188, 0.5);;
+    }
+    
+    &.green {
+        background-color: rgba(112, 255, 121, 0.59);
+    }
 }
 
 .new-card.closed {

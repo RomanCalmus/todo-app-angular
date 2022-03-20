@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, Output } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Card, CardsListService, PlaceholderTitle } from "src/app/services/cards-list.service";
+import { Card, CardColor, CardColors, CardsListService, PlaceholderTitle } from "src/app/services/cards-list.service";
 
 
 @Component({
@@ -26,14 +26,18 @@ export class CardDialogComponent {
 })
 export class CardComponent {
     @Input()  card: Card | undefined
-    @Input()  isNewEdit    = false
+    @Input()  isNewEdit   = false
+    @Input()  readOnly    = false 
     @Output() remove      = new EventEmitter<string>()  
-    defaultTitle = PlaceholderTitle
+    defaultTitle          = PlaceholderTitle
     constructor (protected cardsService: CardsListService) {}
 
     removeCard() {
-        if (!this.card) throw new Error('haven\'t card field');
-        this.cardsService.removeCard(this.card);
         this.remove.emit();
+    }
+
+    changeCardColor() {
+        if (!this.card)  throw new Error('haven\'t card field');
+        //this.card.color = color;
     }
 }

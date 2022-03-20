@@ -1,4 +1,4 @@
-<div (click)="onClick($event)" class="new-card" >
+<div (click)="onClick($event)" class="new-card" [class]="card.color">
     <mat-card *ngIf="!isEdit" (click)="isEdit=true">
         <mat-card-title >{{title}}</mat-card-title>
     </mat-card>

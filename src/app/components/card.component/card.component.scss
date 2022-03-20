@@ -1,3 +1,25 @@
-.mat-card {
-    background-color: rgba(226, 255, 60, 0.5);
+mat-card {
+    &.read-only {
+        cursor: pointer;
+
+        mat-card-title.mat-card-title {
+            font-size: 16px;
+        }
+    }
+    
+    &.yellow {
+        background-color: rgba(255, 216, 65, 0.8);
+    }
+    
+    &.red {
+        background-color: rgba(255, 71, 71, 0.3);
+    }
+    
+    &.gray {
+        background-color: rgba(219, 188, 188, 0.5);;
+    }
+    
+    &.green {
+        background-color: rgba(112, 255, 121, 0.59);
+    }
 }

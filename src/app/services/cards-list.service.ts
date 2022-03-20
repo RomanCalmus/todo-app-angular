@@ -11,7 +11,7 @@ export class CardsListService {
     cards: Array<Card> = []
 
     createCard(title = '', tags: string[] = [], isRegister = false): Card {
-        const card: Card = {title, tags, id: nextId};
+        const card: Card = {title, tags, id: nextId, color: 'yellow'};
         TodoLists.set(nextId, new TodoList());
         if (isRegister) this.registerCard(card);
         nextId++;
@@ -37,9 +37,13 @@ export class CardsListService {
 }
 
 export interface Card {
-    title: string,
-    tags: string[],
-    id: number
+    id    : number,
+    title : string,
+    tags  : string[],
+    color : CardColor
 }
+
+export type CardColor = 'yellow' | 'green' | 'red' | 'gray';
+export const CardColors: Array<CardColor> = ['yellow', 'green', 'red', 'gray'];
 
 export const PlaceholderTitle = 'Список без названия';
