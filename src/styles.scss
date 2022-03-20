@@ -123,6 +123,15 @@ body {
             top: -5px;
         }
     }
+
+    
+    .todo-item:hover {
+        color: blue;
+    }
+
+    static-input:hover {
+        cursor: text;
+    }
     
     .input-wrap {
         border-bottom: 1px solid blue;
@@ -131,4 +140,9 @@ body {
     
     .hide {
         visibility: hidden;
+    }
+
+    mat-card-actions.mat-card-actions {
+        padding-bottom: 0;
+        margin-bottom: 0;
     }
