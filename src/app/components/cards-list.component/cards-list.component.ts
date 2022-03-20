@@ -16,7 +16,7 @@ export class CardsListComponent {
     openCard(card: Card) {
         const that = this;
         this.openedCardId = card.id;
-        this.dialog.open(CardDialogComponent, {data: {card}})
+        this.dialog.open(CardDialogComponent, {data: {card}, position: {top: '100px'}})
             .afterClosed().subscribe(() => that.openedCardId = -1);
     }
 
