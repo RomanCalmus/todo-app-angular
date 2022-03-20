@@ -3,7 +3,7 @@
     (click)="editItem(todoItem)" class="todo-item undone"> 
     <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
 
-    <static-input class="static-input" (keydown)="onKeyDownEdit($event)" (blur)="clearCurrentitemEdit()"
+    <static-input class="static-input" (keydown)="onKeyDownEdit($event)" (blur)="onBlur()"
       [(text)] = "todoItem.title" [isEdit]="currentEditItem === todoItem"></static-input>
     <span class="remove-item" (click)="removeThisItem(todoItem)">X</span>
     

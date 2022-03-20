@@ -74,6 +74,14 @@ export class TodoListWritebaleComponent {
       }
     }
 
+    onBlur() {
+      const that = this;
+      const bluredItem = this.currentEditItem;
+      setTimeout(() => {
+        if (bluredItem === that.currentEditItem) that.clearCurrentitemEdit();
+      }, 100);
+    }
+
     removeThisItem(item: TodoItem) {
       this.list.removeItem(item);
     }
