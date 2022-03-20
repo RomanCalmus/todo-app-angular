@@ -1,6 +1,7 @@
 import { Component, Inject, Input } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Card, CardsListService } from "src/app/services/cards-list.service";
+import { Card, PlaceholderTitle } from "src/app/services/cards-list.service";
+
 
 @Component({
     templateUrl: "./card.component.html",
@@ -8,7 +9,8 @@ import { Card, CardsListService } from "src/app/services/cards-list.service";
 })
 export class CardDialogComponent {
     card: Card
-    isNewEdit: boolean = false
+    @Input() isNewEdit    = false
+    @Input() defaultTitle = PlaceholderTitle
 
     constructor(
         public dialogRef: MatDialogRef<CardDialogComponent>,
@@ -28,5 +30,6 @@ export class CardDialogComponent {
 })
 export class CardComponent {
     @Input() card: Card | undefined
-    @Input() isNewEdit: boolean = false
+    @Input() isNewEdit    = false
+    defaultTitle = PlaceholderTitle
 }

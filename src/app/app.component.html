@@ -1,15 +1,16 @@
-<toolbar></toolbar>
-
-<div class="main">
-    <div></div>
-    <div class="todo">
-        <div class="todo-input-wrapper">
-            <span></span>
-            <card-input></card-input>
-            <span></span>
+<div (click)="click($event)" class="app-wrapper">
+    <toolbar></toolbar>
+    <div class="main">
+        <div></div>
+        <div class="todo">
+            <div class="todo-input-wrapper">
+                <span></span>
+                <card-input></card-input>
+                <span></span>
+            </div>
+            
+            <cards-list></cards-list>
         </div>
-        
-        <cards-list></cards-list>
+        <div></div>
     </div>
-    <div></div>
 </div>

@@ -71,14 +71,6 @@ body {
                 width: 15px;
                 vertical-align:middle;
             }
-
-            input[type="checkbox"]:hover {
-                border-bottom-color: blue;
-                border-top-color: blue;
-                border-left-color: blue;
-                border-right-color: blue;
-                color: blue;
-            }
         }
     }
     
@@ -146,3 +138,10 @@ body {
         padding-bottom: 0;
         margin-bottom: 0;
     }
+
+
+.cdk-overlay-container {
+    .opened-card {
+        width: 30vw;
+    }
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ClickService } from './services/click-service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'todo-app-angular';
+  constructor(protected clickService: ClickService) {}
+
+  click(event: MouseEvent) {
+    this.clickService.clickEvent.emit(event);
+  }
 }

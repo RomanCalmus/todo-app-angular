@@ -1,8 +1,7 @@
-<div (focusout)="onBlur()" (focusin)="onBlurE()" class="new-card" >
+<div (click)="onClick($event)" class="new-card" >
     <mat-card *ngIf="!isEdit" (click)="isEdit=true">
-        <mat-card-title >{{card.title}}</mat-card-title>
+        <mat-card-title >{{title}}</mat-card-title>
     </mat-card>
-    
-    <card *ngIf="isEdit" [isNewEdit]="true" [card]="this.card"></card>
+    <card *ngIf="isEdit" [isNewEdit]="true"  [card]="this.card"></card>
 </div>
 

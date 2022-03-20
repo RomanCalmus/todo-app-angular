@@ -6,10 +6,12 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
     styleUrls: ['static-input.component.scss']
 })
 export class StaticInputComponent {
-    @Input()  isEdit: boolean = false
-    @Input()  text: string = '';
-    @Output() textChange = new EventEmitter<string>();
-    @Output() blur       = new EventEmitter<string>();
+    @Input()  defaultText = ''
+    @Input()  text        = '';
+    @Input()  isEdit      = false
+    @Output() textChange  = new EventEmitter<string>();
+    @Output() blur        = new EventEmitter<string>();
+    isFirstInit           = true
 
     onKeyDownEdit(event: KeyboardEvent) {
         const {key} = event;
@@ -29,6 +31,10 @@ export class StaticInputComponent {
     }
 
     onBlur(event: FocusEvent) {
+        // if (this.isFirstInit) {
+        //     this.isFirstInit = false 
+        //     return
+        // }
         this.isEdit = !this.isEdit;
         this.blur.emit();
     }

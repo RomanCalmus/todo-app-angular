@@ -75,4 +75,8 @@ export class TodoList {
   isFirstItem(item: TodoItem) {
     return this.items.indexOf(item) === 0;
   }
+
+  isEmpty() {
+    return this.items.length && this.doneItems.length;
+  }
 }

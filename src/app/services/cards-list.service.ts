@@ -8,9 +8,10 @@ const TodoLists: Map<number, TodoList> = new Map();
     providedIn: 'root',
 })
 export class CardsListService {
-    cards: Set<Card> = new Set()
+    //cards: Set<Card> = new Set()
+    cards: Array<Card> = []
 
-    createCard(title: string, tags: string[] = [], isRegister = false): Card {
+    createCard(title = '', tags: string[] = [], isRegister = false): Card {
         const card: Card = {title, tags, id: nextId};
         TodoLists.set(nextId, new TodoList());
         if (isRegister) this.registerCard(card);
@@ -20,7 +21,7 @@ export class CardsListService {
     }
 
     registerCard(card: Card) {
-        this.cards.add(card);
+        this.cards.push(card);
     }
 
     getTodoListByCardId(id: number): TodoList {
@@ -35,3 +36,5 @@ export interface Card {
     tags: string[],
     id: number
 }
+
+export const PlaceholderTitle = 'Список без названия';

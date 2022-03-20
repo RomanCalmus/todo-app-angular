@@ -79,8 +79,9 @@ export class TodoListWritebaleComponent {
     }
 
     clearCurrentitemEdit() {
+      const that = this;
       this.currentEditItem = undefined;
-      this.isRemoveNewItemButton = false;
+      setTimeout(() => that.isRemoveNewItemButton = false);
     }
 
     editItem(item: TodoItem) {

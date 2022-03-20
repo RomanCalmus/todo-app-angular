@@ -1,8 +1,9 @@
-<span (click)="isEdit = !isEdit" >
-    <div class="static-input-text" *ngIf="!isEdit">{{text}}</div>
+<span (click)="isEdit = true" >
+    <div class="static-input-text" *ngIf="!isEdit">{{text || defaultText}}</div>
     <span class="input-wrap">
         <input  *ngIf="isEdit" class="todo-item-edit"
-            [(ngModel)]="text"  type="text" (blur)="onBlur($event)"
-            (keydown)="onKeyDownEdit($event)" (keyup)="onKeyUp()" [autofocus]="true">       
+            [placeholder]="defaultText"
+            [(ngModel)]="text"  type="text" [autofocus]="true" (blur)="onBlur($event)"
+            (keydown)="onKeyDownEdit($event)" (keyup)="onKeyUp()" >       
     </span>
 </span>
