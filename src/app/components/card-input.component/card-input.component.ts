@@ -16,10 +16,10 @@ export class CardInputComponent {
     this.card = this.cardsService.createCard();
     this.cardsService.getTodoListByCardId(this.card.id).createItem();
 
-    this.cardsService.createCard('', ['tag1', 'tag2', 'tag3'], true);
-    this.cardsService.createCard('', ['tag1', 'tag2', 'tag3'], true);
-    this.cardsService.createCard('Card #--3', ['tag1', 'tag2', 'tag3'], true);
-    this.cardsService.createCard('Card #--4', ['tag1', 'tag2', 'tag3'], true);
+    // this.cardsService.createCard('', ['tag1', 'tag2', 'tag3'], true);
+    // this.cardsService.createCard('', ['tag1', 'tag2', 'tag3'], true);
+    // this.cardsService.createCard('Card #--3', ['tag1', 'tag2', 'tag3'], true);
+    // this.cardsService.createCard('Card #--4', ['tag1', 'tag2', 'tag3'], true);
 
     this.outsideMouseEvent.clickEvent.subscribe(this.onBlur.bind(this));
   }
