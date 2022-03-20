@@ -32,7 +32,7 @@ export class StaticInputComponent {
     }
 
     onBlur(event: FocusEvent) {    
-        this.isEdit = !this.isEdit;
+        this.isEdit = false;
         this.blur.emit(event);
     }
 }

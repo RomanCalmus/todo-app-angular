@@ -35,9 +35,4 @@ export class CardComponent {
     removeCard() {
         this.remove.emit();
     }
-
-    changeCardColor() {
-        if (!this.card)  throw new Error('haven\'t card field');
-        //this.card.color = color;
-    }
 }
