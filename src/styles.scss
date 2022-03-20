@@ -117,13 +117,7 @@ body {
     }
 
     
-    .todo-item:hover {
-        color: blue;
-    }
 
-    static-input:hover {
-        cursor: text;
-    }
     
     .input-wrap {
         border-bottom: 1px solid blue;
@@ -143,5 +137,13 @@ body {
 .cdk-overlay-container {
     .opened-card {
         width: 30vw;
+    }
+
+    .todo-item:hover {
+        color: blue;
+    }
+
+    static-input:hover {
+        cursor: text;
     }
 }

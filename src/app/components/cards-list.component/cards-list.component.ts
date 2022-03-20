@@ -23,4 +23,8 @@ export class CardsListComponent {
     getCards() {
         return this.cardsService.cards.reverse();
     }
+
+    removeCard(card: Card) {
+        this.cardsService.removeCard(card);
+    }
 }

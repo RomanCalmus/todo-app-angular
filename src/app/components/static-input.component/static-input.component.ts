@@ -10,8 +10,8 @@ export class StaticInputComponent {
     @Input()  text        = '';
     @Input()  isEdit      = false
     @Output() textChange  = new EventEmitter<string>();
-    @Output() blur        = new EventEmitter<string>();
-    isFirstInit           = true
+    @Output() blur        = new EventEmitter<FocusEvent>();
+    @Output() enter       = new EventEmitter<KeyboardEvent>();
 
     onKeyDownEdit(event: KeyboardEvent) {
         const {key} = event;
@@ -19,6 +19,7 @@ export class StaticInputComponent {
         switch (key) {
             case 'Enter':
                 this.isEdit = false;
+                this.enter.emit(event);
             break;
             case 'Escape':
                 this.isEdit = false;
@@ -30,12 +31,8 @@ export class StaticInputComponent {
         this.textChange.emit(this.text);
     }
 
-    onBlur(event: FocusEvent) {
-        // if (this.isFirstInit) {
-        //     this.isFirstInit = false 
-        //     return
-        // }
+    onBlur(event: FocusEvent) {    
         this.isEdit = !this.isEdit;
-        this.blur.emit();
+        this.blur.emit(event);
     }
 }

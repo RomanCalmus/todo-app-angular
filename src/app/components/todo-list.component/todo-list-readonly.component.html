@@ -1,6 +1,6 @@
-<mat-selection-list>
+<mat-selection-list class="todo-list-readonly">
     <mat-list *ngFor="let todoItem of list.items" class="todo-item"> 
-        <input type="checkbox">
+        <input type="checkbox" (click)="checkbox($event)">
         <span>
         <span>{{todoItem.title}}</span>
         </span>          

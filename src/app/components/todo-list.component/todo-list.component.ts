@@ -1,6 +1,6 @@
 import { Component, Input, Output } from '@angular/core';
 import { TodoList, TodoItem } from '../../classes/todo-list';
-import { CardsListService } from 'src/app/services/cards-list.service';
+import { CardsListService, Card } from 'src/app/services/cards-list.service';
 
 @Component({
   selector: 'todo-list-readonly',
@@ -15,6 +15,10 @@ export class TodoListReadOnlyComponent {
   ngOnInit() {
     this.list = this.lists.getTodoListByCardId(this.cardId);
   }
+
+  checkbox(event: MouseEvent) {
+    event.preventDefault();
+  }
 }
 
 @Component({
@@ -23,15 +27,18 @@ export class TodoListReadOnlyComponent {
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListWritebaleComponent {    
-    @Input() isNewEdit: boolean = false
-    currentEditItem: TodoItem | undefined
-    value: string = ''
-    isShowDoneItems: boolean = true
-    isRemoveNewItemButton: boolean = false
-    list: TodoList = new TodoList();
-    @Input() cardId: any = -1;
+    @Input() isNewEdit        = false
+    @Input() cardId           = -1;
+    value                     = ''
+    isShowDoneItems           = true
+    isRemoveNewItemButton     = false
+    list                      = new TodoList();
+    currentEditItem : TodoItem | undefined
+    card            : Card     | undefined
 
-    constructor(private lists: CardsListService) {}
+    constructor(private lists: CardsListService) {
+
+    }
 
     toggleCheck(item: TodoItem) {
       this.clearCurrentitemEdit(); 

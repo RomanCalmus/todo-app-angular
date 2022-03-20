@@ -4,17 +4,22 @@ mat-list.checked {
     width: 100%;
 }
 
-.todo-item-description {
-    margin-left: 3px;
-    color: gainsboro;
-}
-
 .mat-input-element {
     width: 90%;
 }
 
 .new-task {
     margin-top: 5px;
+}
+
+.todo-list-readonly {
+    .todo-item:hover {
+        color: inherit;
+
+        input[type="checkbox"]:hover {
+            cursor: pointer;
+        }
+    }    
 }
 
 .todo-item {
@@ -42,6 +47,11 @@ mat-list.checked {
 }
 
 .todo-item:hover {
+    color: blue;
+
+    static-input:hover {
+        cursor: text;
+    }
     .remove-item {
         visibility: visible;
     }        

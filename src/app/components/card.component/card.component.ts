@@ -1,25 +1,21 @@
-import { Component, Inject, Input } from "@angular/core";
+import { Component, EventEmitter, Inject, Input, Output } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Card, PlaceholderTitle } from "src/app/services/cards-list.service";
+import { Card, CardsListService, PlaceholderTitle } from "src/app/services/cards-list.service";
 
 
 @Component({
-    templateUrl: "./card.component.html",
+    templateUrl: "./card-dialog.component.html",
     styleUrls: ['card.component.scss']
 })
 export class CardDialogComponent {
     card: Card
-    @Input() isNewEdit    = false
-    @Input() defaultTitle = PlaceholderTitle
-
     constructor(
         public dialogRef: MatDialogRef<CardDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
     ) {
 
-        const card = data.card;
-        if (!card) throw new Error('where card?');
-        this.card = card;
+        if (!data.card) throw new Error('where the card?');
+        this.card = data.card;
     }
 }
 
@@ -29,7 +25,15 @@ export class CardDialogComponent {
     styleUrls: ['card.component.scss']
 })
 export class CardComponent {
-    @Input() card: Card | undefined
-    @Input() isNewEdit    = false
+    @Input()  card: Card | undefined
+    @Input()  isNewEdit    = false
+    @Output() remove      = new EventEmitter<string>()  
     defaultTitle = PlaceholderTitle
+    constructor (protected cardsService: CardsListService) {}
+
+    removeCard() {
+        if (!this.card) throw new Error('haven\'t card field');
+        this.cardsService.removeCard(this.card);
+        this.remove.emit();
+    }
 }

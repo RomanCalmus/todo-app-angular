@@ -8,7 +8,6 @@ const TodoLists: Map<number, TodoList> = new Map();
     providedIn: 'root',
 })
 export class CardsListService {
-    //cards: Set<Card> = new Set()
     cards: Array<Card> = []
 
     createCard(title = '', tags: string[] = [], isRegister = false): Card {
@@ -22,6 +21,12 @@ export class CardsListService {
 
     registerCard(card: Card) {
         this.cards.push(card);
+    }
+
+    removeCard(card: Card) {
+        TodoLists.delete(card.id);
+        const i = this.cards.indexOf(card);
+        if (i !== -1 ) this.cards.splice(i, 1);
     }
 
     getTodoListByCardId(id: number): TodoList {

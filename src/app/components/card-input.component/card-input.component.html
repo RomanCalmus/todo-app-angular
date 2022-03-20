@@ -2,6 +2,6 @@
     <mat-card *ngIf="!isEdit" (click)="isEdit=true">
         <mat-card-title >{{title}}</mat-card-title>
     </mat-card>
-    <card *ngIf="isEdit" [isNewEdit]="true"  [card]="this.card"></card>
+    <card *ngIf="isEdit" (remove)="onRemove()" [isNewEdit]="true"  [card]="this.card"></card>
 </div>
 
