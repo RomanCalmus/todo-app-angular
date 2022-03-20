@@ -1,3 +1,5 @@
+@import '../../colors.scss';
+
 mat-card {
     &.read-only {
         cursor: pointer;
@@ -8,18 +10,18 @@ mat-card {
     }
     
     &.yellow {
-        background-color: rgba(255, 216, 65, 0.8);
+        background-color: $yellow-opt
     }
     
     &.red {
-        background-color: rgba(255, 71, 71, 0.3);
+        background-color: $red-opt
     }
     
     &.gray {
-        background-color: rgba(219, 188, 188, 0.5);;
+        background-color: $gray-opt
     }
     
     &.green {
-        background-color: rgba(112, 255, 121, 0.59);
+        background-color: $green-opt
     }
 }

@@ -1,3 +1,5 @@
+@import '../../colors.scss';
+
 .mat-menu-item {
     font-weight: 500;
     text-transform: capitalize;
@@ -11,19 +13,19 @@
         top: 5px;
 
         &.yellow {
-            background-color: rgb(255, 216, 65);
+            background-color: $yellow
         }
         
         &.red {
-            background-color: rgb(255, 71, 71);
+            background-color: $red
         }
         
         &.gray {
-            background-color: rgb(219, 188, 188);
+            background-color: $gray
         }
         
         &.green {
-            background-color: rgb(112, 255, 121);
+            background-color: $green
         }
     }
 }
