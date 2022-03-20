@@ -9,7 +9,7 @@
     
   </div>
 
-  <div class="new-task" [ngClass]="{'hide': !!currentEditItem}" (click)="createNewItem()">+Новая задача</div>
+  <div class="new-task" *ngIf="!isRemoveNewItemButton" [ngClass]="{'hide': !!currentEditItem}" (click)="createNewItem()">+Новая задача</div>
 
   <div class="done">
     <span *ngIf="list.doneItems.length" (click)="isShowDoneItems = !isShowDoneItems">

@@ -3,6 +3,6 @@
     <span class="input-wrap">
         <input  *ngIf="isEdit" class="todo-item-edit"
             [(ngModel)]="text"  type="text" (blur)="onBlur($event)"
-            (keydown)="onKeyDownEdit($event)" [autofocus]="true">       
+            (keydown)="onKeyDownEdit($event)" (keyup)="onKeyUp()" [autofocus]="true">       
     </span>
 </span>

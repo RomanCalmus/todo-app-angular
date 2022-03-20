@@ -10,10 +10,17 @@ const TodoLists: Map<number, TodoList> = new Map();
 export class CardsListService {
     cards: Set<Card> = new Set()
 
-    createCard(title: string, tags: string[] = []) {
-        this.cards.add({title, tags, id: nextId});
+    createCard(title: string, tags: string[] = [], isRegister = false): Card {
+        const card: Card = {title, tags, id: nextId};
         TodoLists.set(nextId, new TodoList());
+        if (isRegister) this.registerCard(card);
         nextId++;
+
+        return card;
+    }
+
+    registerCard(card: Card) {
+        this.cards.add(card);
     }
 
     getTodoListByCardId(id: number): TodoList {

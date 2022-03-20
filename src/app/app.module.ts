@@ -11,9 +11,9 @@ import { ToolbarModule } from './components/toolbar.component/toolbar.module';
 
 //app components
 import { AppComponent } from './app.component';
-import { CardComponent } from './components/card.component/card.component';
+import { CardComponent, CardDialogComponent } from './components/card.component/card.component';
 import { CardsListComponent } from './components/cards-list.component/cards-list.component';
-import { TodoInputComponent } from './components/todo-input.component/todo-input.component';
+import { CardInputComponent } from './components/card-input.component/card-input.component';
 import { TodoListWritebaleComponent, TodoListReadOnlyComponent } from './components/todo-list.component/todo-list.component';
 import { AutofocusDirective } from './derectives/autofocus.derective';
 
@@ -25,12 +25,13 @@ import { StaticInputComponent } from './components/static-input.component/static
 @NgModule({
   declarations: [
     AppComponent,
-    TodoInputComponent,
+    CardInputComponent,
+    CardComponent,
     TodoListWritebaleComponent,
     TodoListReadOnlyComponent,
     AutofocusDirective,
     CardsListComponent,
-    CardComponent,
+    CardDialogComponent,
     StaticInputComponent
   ],
   imports : [

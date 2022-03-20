@@ -9,14 +9,6 @@ export class TodoList {
   items: TodoItems = []
   doneItems: TodoItems = []
 
-  constructor() {
-    this.createItem('!!!');
-    this.createItem('!!!');
-    this.createItem('!!!');
-    this.createItem('!!!');
-    this.createItem('!!!');
-  }
-
   createItem(title: string = ''): TodoItem {
     const item = {title, done: false};
     this.items.push(item);
@@ -55,20 +47,20 @@ export class TodoList {
     this.removeItemFrom(item, this.getItemList(item));
   }
 
-  getNextItemAfter(item: TodoItem): TodoItem {
+  getNextItemAfter(item: TodoItem, isCreateNew = true): TodoItem {
     const i = this.items.indexOf(item);
 
-    if (i == -1 || i == this.items.length - 1) {
+    if ((i == -1 || i == this.items.length - 1) && isCreateNew) {
       return this.createItem();
     } else {
       return this.items[i + 1];
     }
   }
 
-  getPrevItemBefore(item: TodoItem): TodoItem {
+  getPrevItemBefore(item: TodoItem, isReturnSame = true): TodoItem {
     const i = this.items.indexOf(item);
 
-    if (i === 0) {
+    if (i === 0 && isReturnSame) {
       return this.items[0];
     } else {
       return this.items[i - 1];

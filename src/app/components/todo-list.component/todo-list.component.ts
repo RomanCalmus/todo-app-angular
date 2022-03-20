@@ -22,11 +22,16 @@ export class TodoListReadOnlyComponent {
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListWritebaleComponent extends TodoListReadOnlyComponent {    
-    isNewEdit: boolean = false
+export class TodoListWritebaleComponent {    
+    @Input() isNewEdit: boolean = false
     currentEditItem: TodoItem | undefined
     value: string = ''
     isShowDoneItems: boolean = true
+    isRemoveNewItemButton: boolean = false
+    list: TodoList = new TodoList();
+    @Input() cardId: any = -1;
+
+    constructor(private lists: CardsListService) {}
 
     toggleCheck(item: TodoItem) {
       this.clearCurrentitemEdit(); 
@@ -52,7 +57,13 @@ export class TodoListWritebaleComponent extends TodoListReadOnlyComponent {
         case 'Backspace':
           if (this.currentEditItem.title.length !== 0) break;
           const itemForRemove = this.currentEditItem;
-          this.editItem(this.list.getPrevItemBefore(this.currentEditItem));
+          let newItemForEdit = this.list.getPrevItemBefore(itemForRemove, false);
+          if (newItemForEdit) {
+            this.editItem(newItemForEdit);
+          } else {
+            newItemForEdit = this.list.getNextItemAfter(itemForRemove, false);
+            newItemForEdit ? this.editItem(newItemForEdit) : this.clearCurrentitemEdit();
+          }
           this.removeThisItem(itemForRemove);
           break;
         case 'Escape':
@@ -69,6 +80,7 @@ export class TodoListWritebaleComponent extends TodoListReadOnlyComponent {
 
     clearCurrentitemEdit() {
       this.currentEditItem = undefined;
+      this.isRemoveNewItemButton = false;
     }
 
     editItem(item: TodoItem) {
@@ -79,5 +91,11 @@ export class TodoListWritebaleComponent extends TodoListReadOnlyComponent {
     createNewItem() {
       const item = this.list.createItem();
       this.editItem(item);
+      this.isRemoveNewItemButton = true;
+    }
+
+    ngOnInit(): void {
+      this.list = this.lists.getTodoListByCardId(this.cardId);
+      if (this.isNewEdit) this.currentEditItem = this.list.items[0];
     }
 }

@@ -1,18 +1,17 @@
-import { Component } from "@angular/core";
-import { Inject } from "@angular/core";
+import { Component, Inject, Input } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Card, CardsListService } from "src/app/services/cards-list.service";
 
 @Component({
-    selector: 'card',
     templateUrl: "./card.component.html",
     styleUrls: ['card.component.scss']
 })
-export class CardComponent {
+export class CardDialogComponent {
     card: Card
+    isNewEdit: boolean = false
 
     constructor(
-        public dialogRef: MatDialogRef<CardComponent>,
+        public dialogRef: MatDialogRef<CardDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
     ) {
 
@@ -20,4 +19,14 @@ export class CardComponent {
         if (!card) throw new Error('where card?');
         this.card = card;
     }
+}
+
+@Component({
+    selector: 'card',
+    templateUrl: "./card.component.html",
+    styleUrls: ['card.component.scss']
+})
+export class CardComponent {
+    @Input() card: Card | undefined
+    @Input() isNewEdit: boolean = false
 }

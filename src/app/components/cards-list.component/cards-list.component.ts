@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { CardsListService, Card } from "src/app/services/cards-list.service";
-import { CardComponent } from "../card.component/card.component";
+import { CardDialogComponent } from "../card.component/card.component";
 
 @Component({
     selector: 'cards-list',
@@ -15,7 +15,7 @@ export class CardsListComponent {
     openCard(card: Card) {
         const that = this;
         this.openedCardId = card.id;
-        this.dialog.open(CardComponent, {data: {card}})
+        this.dialog.open(CardDialogComponent, {data: {card}})
             .afterClosed().subscribe(() => that.openedCardId = -1);
     }
 }

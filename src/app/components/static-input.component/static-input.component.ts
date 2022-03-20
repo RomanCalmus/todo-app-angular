@@ -21,10 +21,11 @@ export class StaticInputComponent {
             case 'Escape':
                 this.isEdit = false;
             break;
-            default: 
-                this.textChange.emit(this.text);
-            break;
         }
+    }
+
+    onKeyUp() {
+        this.textChange.emit(this.text);
     }
 
     onBlur(event: FocusEvent) {
