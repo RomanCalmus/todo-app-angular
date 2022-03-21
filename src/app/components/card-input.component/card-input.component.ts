@@ -1,3 +1,5 @@
+'use strict';
+
 import { Component } from '@angular/core';
 import { Card, CardsListService } from 'src/app/services/cards-list.service';
 import { ClickService } from 'src/app/services/click-service';
