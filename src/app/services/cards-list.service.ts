@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { TodoList } from "../classes/todo-list";
+import { random } from "../misc/colors";
 
 let nextId = 0;
 const TodoLists: Map<number, TodoList> = new Map();
@@ -10,8 +11,8 @@ const TodoLists: Map<number, TodoList> = new Map();
 export class CardsListService {
     cards: Array<Card> = []
 
-    createCard(title = '', tags: string[] = [], isRegister = false): Card {
-        const card: Card = {title, tags, id: nextId, color: 'yellow'};
+    createCard(title = '', color: CardColor = 'yellow', tags: string[] = [], isRegister = false): Card {
+        const card: Card = {title, tags, id: nextId, color};
         TodoLists.set(nextId, new TodoList());
         if (isRegister) this.registerCard(card);
         nextId++;
@@ -45,5 +46,8 @@ export interface Card {
 
 export type CardColor = 'yellow' | 'green' | 'red' | 'gray';
 export const CardColors: Array<CardColor> = ['yellow', 'green', 'red', 'gray'];
+export function makeRandomColor() {
+    return CardColors[random(CardColors.length)];
+}
 
 export const PlaceholderTitle = 'Список без названия';
