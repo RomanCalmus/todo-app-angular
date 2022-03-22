@@ -1,7 +1,7 @@
 'use strict';
 
 import { Component } from '@angular/core';
-import { Card, CardsListService } from 'src/app/services/cards-list.service';
+import { Card, CardsListService, makeRandomColor } from 'src/app/services/cards-list.service';
 import { ClickService } from 'src/app/services/click-service';
 
 @Component({
@@ -15,7 +15,7 @@ export class CardInputComponent {
   title = 'Новый список'
 
   constructor(protected cardsService: CardsListService, protected outsideMouseEvent: ClickService) {
-    this.card = this.cardsService.createCard();
+    this.card = this.cardsService.createCard('', makeRandomColor());
     this.cardsService.getTodoListByCardId(this.card.id).createItem();
 
     // this.cardsService.createCard('', ['tag1', 'tag2', 'tag3'], true);
