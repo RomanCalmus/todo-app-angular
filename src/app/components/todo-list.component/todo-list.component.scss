@@ -12,11 +12,39 @@ mat-list.checked {
     margin-top: 5px;
 }
 
+.new-task:hover {
+    cursor: pointer;
+    color: blue;
+}
+
 .todo-item {
     position: relative;
     padding-top: 4px;
     padding-bottom: 4px;
     font-size: 20px;
+    height: 24px;
+
+    static-input {
+        margin-left: 22px;
+    }
+
+    &.undone {
+        mat-list.mat-list {
+            height: 24px;
+        }
+    
+        input[type="checkbox"] {
+            position: absolute;
+            top: 8px;  
+    
+            margin-top: 0;
+            margin-bottom: 0;
+    
+            height: 15px;
+            width: 15px;
+            vertical-align:middle;
+        }
+    }
 
     .remove-item {
         font-weight: bold;
@@ -30,8 +58,10 @@ mat-list.checked {
     }
 }
 
-.input-wrap {
-    border-bottom: 1px solid blue;
+mat-list.checked {
+    font-style: italic;
+    text-decoration: line-through;
+    width: 100%;
 }
 
 mat-card {
@@ -47,9 +77,6 @@ mat-card {
         }        
     }
 }
-
-
-
 
 .todo-list-readonly {
     .todo-item {
@@ -67,12 +94,14 @@ mat-card {
 
 
 .done {
+    color: rgba(0,0,0,.54);
+    margin-top: 10px;
+    
     .todo-item {
         font-size: 14px;
         font-weight: normal;
     }
-    color: rgba(0,0,0,.54);
-    margin-top: 10px;
+    
     .done-title {
         cursor: pointer;
     }

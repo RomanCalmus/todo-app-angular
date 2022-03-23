@@ -1,6 +1,14 @@
 @import '../../colors.scss';
 
-mat-card {
+mat-card.opened-card {
+    .done {
+        font-weight: 500;
+    } 
+
+    mat-card-title.mat-card-title {
+        height: 24px;
+    }
+
     &.read-only {
         cursor: pointer;
 
@@ -8,6 +16,9 @@ mat-card {
             font-size: 16px;
         }
     }
+
+    transition-property: background-color;
+    transition-duration: 1s;
     
     &.yellow {
         background-color: $yellow-opt

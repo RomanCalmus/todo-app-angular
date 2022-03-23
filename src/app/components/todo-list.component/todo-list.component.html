@@ -2,14 +2,12 @@
   <div *ngFor="let todoItem of list.items" [ngClass]="{'checked': todoItem.done, 'current-item': currentEditItem === todoItem}" 
     (click)="editItem(todoItem)" class="todo-item undone"> 
     <input type="checkbox" [checked]="todoItem.done" (click)="toggleCheck(todoItem)">
-
-    <static-input class="static-input" (keydown)="onKeyDownEdit($event)" (blur)="onBlur()"
-      [(text)] = "todoItem.title" [isEdit]="currentEditItem === todoItem"></static-input>
+    <static-input (keydown)="onKeyDownEdit($event)" (blur)="onBlur()"
+      [(text)]="todoItem.title" [isEdit]="currentEditItem === todoItem"></static-input>
     <span class="remove-item" (click)="removeThisItem(todoItem)">X</span>
-    
   </div>
 
-  <div class="new-task" *ngIf="!isRemoveNewItemButton" [ngClass]="{'hide': !!currentEditItem}" (click)="createNewItem()">+Новая задача</div>
+  <div class="new-task" *ngIf="!isRemoveNewItemButton" [ngClass]="{'hide': !!currentEditItem}" (click)="createNewItem()">+ Новая задача</div>
 
   <div class="done">
     <span *ngIf="list.doneItems.length" (click)="isShowDoneItems = !isShowDoneItems">

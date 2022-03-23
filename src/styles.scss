@@ -14,91 +14,6 @@ body {
     background-color: rgb(212, 205, 205);
 }
 
-.opened-card {
-    .done {
-        font-weight: 500;
-    } 
-
-    static-input {
-        display: inline-block;
-        font-weight: 500;
-        height: 24px;
-        width: 90%;
-
-        input[type="text"] {
-            font: inherit;
-            background: transparent;
-            color: currentColor;
-            border: none;
-            outline: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-            max-width: 100%;
-            box-sizing: content-box;
-        }
-
-        .static-input-text {
-            margin-top: 2px;
-        }
-    }   
-    
-    .todo-item.undone {
-        mat-list.mat-list {
-            height: 24px;
-        }
-
-        static-input {
-            margin-left: 22px;
-        }
-
-        input[type="checkbox"] {
-            position: absolute;
-            top: 8px;  
-
-            margin-top: 0;
-            margin-bottom: 0;
-
-            height: 15px;
-            width: 15px;
-            vertical-align:middle;
-        }
-    }
-}
-
-mat-list.checked {
-    font-style: italic;
-    text-decoration: line-through;
-    width: 100%;
-}
-
-.todo-item-description {
-    margin-left: 3px;
-    color: gainsboro;
-}
-
-.mat-input-element {
-    width: 90%;
-}
-
-.new-task {
-    margin-top: 5px;
-}
-
-.new-task:hover {
-    cursor: pointer;
-    color: blue;
-}
-
-
-
-
-
-.input-wrap {
-    border-bottom: 1px solid blue;
-}
-
-
 .hide {
     visibility: hidden;
 }
@@ -144,6 +59,15 @@ mat-card-actions.mat-card-actions {
         
         &.green {
             background-color: $green
+        }
+    }
+}
+
+
+mat-card-title.mat-card-title {
+    .static-input {
+        .static-input-text {
+            top: 0.33ex !important;   
         }
     }
 }
