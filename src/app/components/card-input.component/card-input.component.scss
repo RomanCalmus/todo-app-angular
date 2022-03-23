@@ -12,8 +12,8 @@
     margin-top: 10px;
     margin-bottom: 15px;
 
-    transition-property: background-color;
-    transition-duration: 1s;
+    transition-property: background-color, height;
+    transition-duration: 1s, 10s;
 
 //Move to mixins
     &.yellow {

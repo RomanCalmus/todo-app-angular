@@ -17,10 +17,11 @@ mat-card.opened-card {
         }
     }
     
-    transition: opacity 0.5s 1s;
-    transition: background-color 1s;
+    transition-property: background-color;
+    transition-duration: 1s;
     
     &.hide-card {
+        transition: opacity 100ms;
         opacity: 0;
     }
 
