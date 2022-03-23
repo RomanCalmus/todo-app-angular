@@ -12,6 +12,10 @@
     margin-top: 10px;
     margin-bottom: 15px;
 
+    transition-property: background-color;
+    transition-duration: 1s;
+
+//Move to mixins
     &.yellow {
         background-color: $yellow-opt
     }
@@ -35,7 +39,20 @@
     }
 }
 
+mat-card {
+    &:hover {
+        color: blue;
+        cursor: pointer;
+    }
+}
 .mat-card-title {
     margin: 0;
     font-weight: 300;
+
+    transition: color 500ms;
+
+    &:hover {
+        color: blue;
+        cursor: text;
+    }
 }
