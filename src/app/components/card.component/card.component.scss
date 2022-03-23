@@ -16,10 +16,14 @@ mat-card.opened-card {
             font-size: 16px;
         }
     }
-
-    transition-property: background-color;
-    transition-duration: 1s;
     
+    transition: opacity 0.5s 1s;
+    transition: background-color 1s;
+    
+    &.hide-card {
+        opacity: 0;
+    }
+
     &.yellow {
         background-color: $yellow-opt
     }

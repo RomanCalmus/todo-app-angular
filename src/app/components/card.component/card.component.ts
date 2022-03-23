@@ -30,9 +30,18 @@ export class CardComponent {
     @Input()  readOnly    = false 
     @Output() remove      = new EventEmitter<string>()  
     defaultTitle          = PlaceholderTitle
+    isToRemove            = false
     constructor (protected cardsService: CardsListService) {}
 
+
     removeCard() {
-        this.remove.emit();
+        if (!this.card) return;
+        const that = this, card = this.card;
+        this.isToRemove = true;
+
+        setTimeout(() => {
+            that.cardsService.removeCard(card);
+            that.remove.emit()
+        }, 100);
     }
 }

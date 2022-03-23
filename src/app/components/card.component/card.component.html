@@ -1,4 +1,5 @@
-<mat-card class="opened-card" *ngIf="card" [class]="card.color" [ngClass]="{'read-only': readOnly}">
+<mat-card class="opened-card" *ngIf="card" [class]="card.color" 
+  [ngClass]="{'read-only': readOnly, 'hide-card': isToRemove}">
   <div>
     <mat-card-title>
       <span *ngIf="readOnly">{{card.title || defaultTitle}}</span>

@@ -13,11 +13,11 @@ export class CardActionsComponent {
     @Output() color  = new EventEmitter<string>()
     colors = CardColors
 
-    constructor(protected cardsService: CardsListService) {}
+    constructor() {}
 
-    removeAction() {
+    removeAction(event: MouseEvent) {
         if (!this.card) throw new Error('card isn\'t provided');
-        this.cardsService.removeCard(this.card);
+        event.stopPropagation();
         this.remove.emit();
     }
 
