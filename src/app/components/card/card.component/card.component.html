@@ -5,8 +5,8 @@
       <span *ngIf="readOnly">{{card.title || defaultTitle}}</span>
       <static-input *ngIf="!readOnly" [(text)]="card.title" [defaultText]="defaultTitle" 
         [isEdit]="false"></static-input></mat-card-title>
-    <mat-card-subtitle *ngIf="card.tags.length">
-      <span *ngFor="let tag of card.tags" class="card-tag">{{tag}}</span></mat-card-subtitle>
+    <!-- <mat-card-subtitle *ngIf="card.tags.length">
+      <span *ngFor="let tag of card.tags" class="card-tag">{{tag}}</span></mat-card-subtitle> -->
     <mat-card-content>
       <todo-list-readonly *ngIf='readOnly' [cardId]="card.id"></todo-list-readonly>
       <todo-list *ngIf='!readOnly' [isNewEdit]="isNewEdit" [cardId]="card.id"></todo-list></mat-card-content>

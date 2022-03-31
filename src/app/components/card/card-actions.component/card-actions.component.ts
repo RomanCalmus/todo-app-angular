@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Card, CardColors, CardColor, CardsListService } from "src/app/services/cards-list.service";
+import { Card, CardColor, CardColors } from "src/app/models/card.model";
+
 
 
 @Component({

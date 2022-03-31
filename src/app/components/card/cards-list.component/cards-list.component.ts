@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { CardsListService, Card, PlaceholderTitle, CardColor } from "src/app/services/cards-list.service";
+import { Card } from "src/app/models/card.model";
+import { CardsListService, PlaceholderTitle } from "src/app/services/cards-list.service";
 import { CardDialogComponent } from "../card.component/card.component";
 
 @Component({
@@ -11,8 +12,10 @@ import { CardDialogComponent } from "../card.component/card.component";
 export class CardsListComponent {
     openedCardId: number = -1
     defaultCardTitle = PlaceholderTitle
+    @Input() cards: ReadonlyArray<Card> | null= []
 
     constructor(public cardsService: CardsListService, private dialog: MatDialog) {}
+
     openCard(card: Card) {
         const that = this;
         this.openedCardId = card.id;
@@ -20,11 +23,7 @@ export class CardsListComponent {
             .afterClosed().subscribe(() => that.openedCardId = -1);
     }
 
-    getCards() {
-        return this.cardsService.cards.reverse();
-    }
-
     removeCard(card: Card) {
-        this.cardsService.removeCard(card);
+       
     }
 }

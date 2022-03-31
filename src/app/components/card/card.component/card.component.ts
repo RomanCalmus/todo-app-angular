@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, Input, Output } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Card, CardsListService, PlaceholderTitle } from "src/app/services/cards-list.service";
+import { Card } from "src/app/models/card.model";
+import { CardsListService, PlaceholderTitle } from "src/app/services/cards-list.service";
 
 
 @Component({

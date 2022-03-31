@@ -3,9 +3,15 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Card, CardsListService, makeRandomColor } from 'src/app/services/cards-list.service';
+import { random } from 'src/app/misc/colors';
+import { Card, CardColors } from 'src/app/models/card.model';
+import { CardsListService } from 'src/app/services/cards-list.service';
 import { ClickService } from 'src/app/services/click-service';
 import { closeCardInput, openCardInput } from './state/card-input.actions';
+
+export function makeRandomColor() {
+  return CardColors[random(CardColors.length)];
+}
 
 @Component({
   selector: 'card-input',
@@ -14,7 +20,7 @@ import { closeCardInput, openCardInput } from './state/card-input.actions';
 })
 export class CardInputComponent {
   state$: Observable<boolean>
-  card: Card;
+  card: Card = {title: '', id: 0, color: 'yellow'};
   title = 'Новый список'
 
   constructor(
@@ -22,7 +28,7 @@ export class CardInputComponent {
     protected outsideMouseEvent: ClickService,
     private store: Store<{cardinput: boolean}>                                        ) {
       
-      this.card = this.cardsService.createCard('', makeRandomColor());
+      //this.card = this.cardsService.createCard('', makeRandomColor());
       // this.cardsService.getTodoListByCardId(this.card.id).createItem();
       this.outsideMouseEvent.clickEvent.subscribe(this.onBlur.bind(this));
       this.state$ = store.select('cardinput');
@@ -35,12 +41,12 @@ export class CardInputComponent {
     this.store.dispatch(closeCardInput());
   }
 
-  private createNewDefaultCard() {
-    const prevColor = this.card.color;
-    this.card = this.cardsService.createCard();
-    this.cardsService.getTodoListByCardId(this.card.id).createItem();
-    this.card.color = prevColor;
-  }
+  // private createNewDefaultCard() {
+  //   const prevColor = this.card.color;
+  //   this.card = this.cardsService.createCard();
+  //   this.cardsService.getTodoListByCardId(this.card.id).createItem();
+  //   this.card.color = prevColor;
+  // }
 
   //isEdited() {
     // let isEdited = false;

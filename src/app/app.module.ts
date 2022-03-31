@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 //app modules
 import { ToolbarModule } from './components/toolbar.component/toolbar.module';
@@ -26,6 +27,10 @@ import { CardActionsComponent } from './components/card/card-actions.component/c
 import { cardInputReducer } from './components/card/card-input.component/state/card-input.reducers';
 import { staticInputReducer } from './components/static-input.component/state/static-input.reducers';
 
+//app reducers
+import { cardsReducer } from './components/card/card.component/state/card.reducers';
+
+
 
 @NgModule({
   declarations: [
@@ -42,11 +47,13 @@ import { staticInputReducer } from './components/static-input.component/state/st
   ],
   imports : [
     AppRoutingModule,
+    HttpClientModule,
     BrowserModule, 
     ToolbarModule, 
     ...Material.modules,
     StoreModule.forRoot({
       cardinput: cardInputReducer,
+      cards: cardsReducer,
       staticInput: staticInputReducer
     })
   ],
