@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Card, CardsListService, makeRandomColor } from 'src/app/services/cards-list.service';
 import { ClickService } from 'src/app/services/click-service';
-import { closeCardInput, openCardInput } from './state/actions';
+import { closeCardInput, openCardInput } from './state/card-input.actions';
 
 @Component({
   selector: 'card-input',
@@ -13,7 +13,7 @@ import { closeCardInput, openCardInput } from './state/actions';
   styleUrls: ['./card-input.component.scss']
 })
 export class CardInputComponent {
-  cardInputState$: Observable<boolean>
+  state$: Observable<boolean>
   card: Card;
   title = 'Новый список'
 
@@ -23,24 +23,10 @@ export class CardInputComponent {
     private store: Store<{cardinput: boolean}>                                        ) {
       
       this.card = this.cardsService.createCard('', makeRandomColor());
-      this.cardsService.getTodoListByCardId(this.card.id).createItem();
+      // this.cardsService.getTodoListByCardId(this.card.id).createItem();
       this.outsideMouseEvent.clickEvent.subscribe(this.onBlur.bind(this));
-      this.cardInputState$ = store.select('cardinput');
+      this.state$ = store.select('cardinput');
   }
-
-  onBlur() {
-//    this.registerCard();
-    this.close();
-  }
-  
-  onClick(event: MouseEvent) {
-    event.stopPropagation();
-  }
-
-  onOpen() {
-    this.open();
-  }
-
   private open() {
     this.store.dispatch(openCardInput());
   }
@@ -49,18 +35,14 @@ export class CardInputComponent {
     this.store.dispatch(closeCardInput());
   }
 
-  onRemove() {
-    this.close();
-  }
-
-  createNewDefaultCard() {
+  private createNewDefaultCard() {
     const prevColor = this.card.color;
     this.card = this.cardsService.createCard();
     this.cardsService.getTodoListByCardId(this.card.id).createItem();
     this.card.color = prevColor;
   }
 
-  isEdited() {
+  //isEdited() {
     // let isEdited = false;
     // const list = this.cardsService.getTodoListByCardId(this.card.id);
    
@@ -73,12 +55,30 @@ export class CardInputComponent {
     // }
 
     // return isEdited;
-  }
+//  }
 
-  registerCard() {
+  //registerCard() {
     // if (this.isEdited()) {
     //   this.cardsService.registerCard(this.card);
     //   this.createNewDefaultCard();
     // }
+  //}
+
+  //Event handlers
+  onBlur() {
+  //    this.registerCard();
+    this.close();
+  }
+
+  onClick(event: MouseEvent) {
+    event.stopPropagation();
+  }
+
+  onOpen() {
+    this.open();
+  }
+
+  onRemove() {
+    this.close();
   }
 }
