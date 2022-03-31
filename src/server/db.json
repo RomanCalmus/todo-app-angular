@@ -1,5 +1,8 @@
 {
   "cards": [
-    { "id": 1, "title": "card-1", "color": "green" }
+    { "id": 1, "title": "card-1", "color": "green" },
+    { "id": 2, "title": "card-2", "color": "yellow"},
+    { "id": 3, "title": "card-3", "color": "red"},
+    { "id": 4, "title": "card-4", "color": "gray"}
   ]
 }

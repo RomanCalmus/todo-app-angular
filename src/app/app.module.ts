@@ -4,6 +4,10 @@
 import { Material } from './modules/material.module';
 import { StoreModule } from '@ngrx/store';
 
+//tools
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+
 //angular modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -31,7 +35,6 @@ import { staticInputReducer } from './components/static-input.component/state/st
 import { cardsReducer } from './components/card/card.component/state/card.reducers';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +58,12 @@ import { cardsReducer } from './components/card/card.component/state/card.reduce
       cardinput: cardInputReducer,
       cards: cardsReducer,
       staticInput: staticInputReducer
-    })
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
   ],
   providers: [...Material.providers],
   bootstrap: [AppComponent]
