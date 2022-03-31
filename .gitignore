@@ -38,6 +38,5 @@ testem.log
 Thumbs.db
 
 #
-src/server/go/go.sum
 src/server/go
-src/server/rust_server
+src/server/rust

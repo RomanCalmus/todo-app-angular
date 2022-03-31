@@ -20,9 +20,9 @@ import { TodoListWritebaleComponent, TodoListReadOnlyComponent } from './compone
 import { AutofocusDirective } from './derectives/autofocus.derective';
 
 //app services
-import { CardsListService } from './services/cards-list.service';
 import { StaticInputComponent } from './components/static-input.component/static-input.component';
 import { CardActionsComponent } from './components/card-actions.component/card-actions.component';
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -42,7 +42,8 @@ import { CardActionsComponent } from './components/card-actions.component/card-a
     AppRoutingModule,
     BrowserModule, 
     ToolbarModule, 
-    ...Material.modules
+    ...Material.modules,
+    StoreModule.forRoot({}, {})
   ],
   providers: [...Material.providers],
   bootstrap: [AppComponent]
