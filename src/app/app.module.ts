@@ -23,6 +23,7 @@ import { AutofocusDirective } from './derectives/autofocus.derective';
 import { StaticInputComponent } from './components/static-input.component/static-input.component';
 import { CardActionsComponent } from './components/card-actions.component/card-actions.component';
 import { StoreModule } from '@ngrx/store';
+import { cardInputReducer } from './components/card-input.component/state/reducers';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { StoreModule } from '@ngrx/store';
     BrowserModule, 
     ToolbarModule, 
     ...Material.modules,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({cardinput: cardInputReducer})
   ],
   providers: [...Material.providers],
   bootstrap: [AppComponent]
