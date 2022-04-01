@@ -1,8 +1,8 @@
 import { Component, Input } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { Store } from "@ngrx/store";
 import { Card } from "src/app/models/card.model";
 import { CardsListService, PlaceholderTitle } from "src/app/services/cards-list.service";
-import { CardDialogComponent } from "../card.component/card.component";
+import { openCardWindow } from "../card.component/state/card.actions";
 
 @Component({
     selector: 'cards-list',
@@ -14,13 +14,10 @@ export class CardsListComponent {
     defaultCardTitle = PlaceholderTitle
     @Input() cards: ReadonlyArray<Card> | null= []
 
-    constructor(public cardsService: CardsListService, private dialog: MatDialog) {}
+    constructor(public cardsService: CardsListService, private store: Store) {}
 
     openCard(card: Card) {
-        const that = this;
-        this.openedCardId = card.id;
-        this.dialog.open(CardDialogComponent, {data: {card}, position: {top: '100px'}})
-            .afterClosed().subscribe(() => that.openedCardId = -1);
+        this.store.dispatch(openCardWindow({card}));
     }
 
     removeCard(card: Card) {

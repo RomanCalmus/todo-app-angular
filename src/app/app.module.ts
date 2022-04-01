@@ -33,6 +33,7 @@ import { staticInputReducer } from './components/static-input.component/state/st
 
 //app reducers
 import { cardsReducer } from './components/card/card.component/state/card.reducers';
+import { cardWindowReducer } from './components/card/card.component/state/card.window.reducers';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { cardsReducer } from './components/card/card.component/state/card.reduce
     StoreModule.forRoot({
       cardinput: cardInputReducer,
       cards: cardsReducer,
+      cardWindow: cardWindowReducer,
       staticInput: staticInputReducer
     }),
     StoreDevtoolsModule.instrument({
