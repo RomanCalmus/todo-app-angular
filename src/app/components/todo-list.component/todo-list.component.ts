@@ -1,7 +1,7 @@
 import { Component, Input, Output } from '@angular/core';
-import { TodoList, TodoItem } from '../../classes/todo-list';
+import { TodoList } from '../../classes/todo-list';
 import { CardsListService } from 'src/app/services/cards-list.service';
-import { Card } from 'src/app/models/card.model';
+import { Card, CardItem } from 'src/app/models/card.model';
 
 @Component({
   selector: 'todo-list-readonly',
@@ -10,8 +10,8 @@ import { Card } from 'src/app/models/card.model';
 })
 export class TodoListReadOnlyComponent {   
   list: TodoList = new TodoList();
-  @Input() cardId: any = -1;
-  constructor(private lists: CardsListService) {}
+  @Input() card: Card | undefined
+  constructor() {}
 
   ngOnInit() {
     //this.list = this.lists.getTodoListByCardId(this.cardId);
@@ -29,19 +29,16 @@ export class TodoListReadOnlyComponent {
 })
 export class TodoListWritebaleComponent {    
     @Input() isNewEdit        = false
-    @Input() cardId           = -1;
+    @Input() card             : Card | undefined
     value                     = ''
     isShowDoneItems           = true
     isRemoveNewItemButton     = false
     list                      = new TodoList();
-    currentEditItem : TodoItem | undefined
-    card            : Card     | undefined
+    currentEditItem : CardItem | undefined
 
-    constructor(private lists: CardsListService) {
+    constructor() {}
 
-    }
-
-    toggleCheck(item: TodoItem) {
+    toggleCheck(item: CardItem) {
       this.clearCurrentitemEdit(); 
       this.list.toggleItem(item);
     }
@@ -49,37 +46,37 @@ export class TodoListWritebaleComponent {
     onKeyDownEdit(event: KeyboardEvent) {
       const {key} = event;
 
-      if (!this.currentEditItem) return;
-      switch (key) {
-        case 'Enter': 
-          this.editItem(this.list.getNextItemAfter(this.currentEditItem));
-          break;
-        case 'ArrowUp':
-          if (this.list.isFirstItem(this.currentEditItem)) break;
-          this.editItem(this.list.getPrevItemBefore(this.currentEditItem));
-          break;
-        case 'ArrowDown':
-          if (this.list.isLastItem(this.currentEditItem)) break;
-          this.editItem(this.list.getNextItemAfter(this.currentEditItem));
-          break;
-        case 'Backspace':
-          if (this.currentEditItem.title.length !== 0) break;
-          const itemForRemove = this.currentEditItem;
-          let newItemForEdit = this.list.getPrevItemBefore(itemForRemove, false);
-          if (newItemForEdit) {
-            this.editItem(newItemForEdit);
-          } else {
-            newItemForEdit = this.list.getNextItemAfter(itemForRemove, false);
-            newItemForEdit ? this.editItem(newItemForEdit) : this.clearCurrentitemEdit();
-          }
-          this.removeThisItem(itemForRemove);
-          break;
-        case 'Escape':
-          event.stopPropagation();
-          if (!this.currentEditItem) break;
-          this.clearCurrentitemEdit();
-          break;
-      }
+      // if (!this.currentEditItem) return;
+      // switch (key) {
+      //   case 'Enter': 
+      //     //this.editItem(this.list.getNextItemAfter(this.currentEditItem));
+      //     break;
+      //   case 'ArrowUp':
+      //     if (this.list.isFirstItem(this.currentEditItem)) break;
+      //     this.editItem(this.list.getPrevItemBefore(this.currentEditItem));
+      //     break;
+      //   case 'ArrowDown':
+      //     if (this.list.isLastItem(this.currentEditItem)) break;
+      //     this.editItem(this.list.getNextItemAfter(this.currentEditItem));
+      //     break;
+      //   case 'Backspace':
+      //     if (this.currentEditItem.title.length !== 0) break;
+      //     const itemForRemove = this.currentEditItem;
+      //     let newItemForEdit = this.list.getPrevItemBefore(itemForRemove, false);
+      //     if (newItemForEdit) {
+      //       this.editItem(newItemForEdit);
+      //     } else {
+      //       newItemForEdit = this.list.getNextItemAfter(itemForRemove, false);
+      //       newItemForEdit ? this.editItem(newItemForEdit) : this.clearCurrentitemEdit();
+      //     }
+      //     this.removeThisItem(itemForRemove);
+      //     break;
+      //   case 'Escape':
+      //     event.stopPropagation();
+      //     if (!this.currentEditItem) break;
+      //     this.clearCurrentitemEdit();
+      //     break;
+      // }
     }
 
     onBlur() {
@@ -90,8 +87,8 @@ export class TodoListWritebaleComponent {
       }, 100);
     }
 
-    removeThisItem(item: TodoItem) {
-      this.list.removeItem(item);
+    removeThisItem(item: CardItem) {
+      //this.list.removeItem(item);
     }
 
     clearCurrentitemEdit() {
@@ -100,7 +97,7 @@ export class TodoListWritebaleComponent {
       setTimeout(() => that.isRemoveNewItemButton = false);
     }
 
-    editItem(item: TodoItem) {
+    editItem(item: CardItem) {
       if (this.currentEditItem === item) return;
       this.currentEditItem = item;
     }

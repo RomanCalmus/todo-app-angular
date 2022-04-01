@@ -2,6 +2,6 @@
     <mat-card *ngIf="!(state$ | async)" (click)="onOpen()">
         <mat-card-title >{{title}}</mat-card-title>
     </mat-card>
-    <card *ngIf="state$ | async" (remove)="onRemove()" [isNewEdit]="true" [removeAnimation]="false"  [card]="this.card"></card>
+    <card *ngIf="state$ | async" (remove)="onRemove()" 
+        [isNewEdit]="true" [removeAnimation]="false"  [card]="this.card"></card>
 </div>
-

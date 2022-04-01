@@ -1,8 +1,26 @@
 {
   "cards": [
-    { "id": 1, "title": "card-1", "color": "green" },
-    { "id": 2, "title": "card-2", "color": "yellow"},
-    { "id": 3, "title": "card-3", "color": "red"},
-    { "id": 4, "title": "card-4", "color": "gray"}
+    { "id": 1, "title": "card-1", "color": "green", "items": [
+        {"id": 1, "text": "my first task"},
+        {"id": 2, "text": "my another task"},
+        {"id": 3, "text": "my third task"}
+      ]},
+    { "id": 2, "title": "card-2", "color": "yellow", "items": [
+      {"id": 1, "text": "my first task"},
+      {"id": 2, "text": "my another task"},
+      {"id": 3, "text": "my third task"},
+      {"id": 1, "text": "my first task"},
+      {"id": 2, "text": "my another task"},
+      {"id": 3, "text": "my third task"}
+    ]},
+    { "id": 3, "title": "card-3", "color": "red", "items": [
+      {"id": 1, "text": "my first task"},
+      {"id": 3, "text": "my third task"}
+    ]},
+    { "id": 4, "title": "card-4", "color": "gray", "items": [
+      {"id": 1, "text": "my first task"},
+      {"id": 2, "text": "my another task"},
+      {"id": 3, "text": "my third task"}
+    ]}
   ]
 }

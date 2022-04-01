@@ -20,7 +20,7 @@ export function makeRandomColor() {
 })
 export class CardInputComponent {
   state$: Observable<boolean>
-  card: Card = {title: '', id: 0, color: 'yellow'};
+  card: Card = {title: '', id: 0, color: 'yellow', items: []};
   title = 'Новый список'
 
   constructor(
