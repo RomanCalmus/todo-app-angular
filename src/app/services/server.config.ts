@@ -1,4 +1,4 @@
-type strOrNum = string | number;
+import { strOrNum } from "../misc/type.utils";
 
 export const baseUrl = 'http://localhost:3000';
 export const cardsUrls = {

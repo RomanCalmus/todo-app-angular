@@ -4,7 +4,7 @@
     <div *ngFor="let card of cards$ | async" >
       <card [readOnly]="true" [card]="card"
             [ngClass]="{'hide': card.id === openedCardId}"
-            (click)="openCard(card)"></card>
+            (click)="openCard(card, $event)"></card>
     </div>
   </div>
   <div></div>

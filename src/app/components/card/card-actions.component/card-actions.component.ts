@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Card, CardColor, CardColors } from "src/app/models/card.model";
-import { Events as CardListEvents } from "../../../services/cards-list.service"
+import { CardsListEvents } from "../../../services/cards-list.service"
+import { removeCardAction } from "../card.component/state/card.actions";
 
 @Component({
     selector: 'card-actions',
@@ -14,9 +15,12 @@ export class CardActionsComponent {
     constructor(private store: Store) {}
 
     removeAction(event: MouseEvent) {
-        if (!this.card) throw new Error('card isn\'t provided');
+        const {card, store} = this;
+        if (!card) throw new Error('card isn\'t provided');
         event.stopPropagation();
-        this.store.dispatch({ type: CardListEvents.RemoveCard, card: this.card })
+        
+        store.dispatch(removeCardAction({card}));
+        store.dispatch({ type: CardsListEvents.RemoveCard, card })
     }
 
     stopClick(event: MouseEvent) {
@@ -24,8 +28,7 @@ export class CardActionsComponent {
     }
     
     getColors() {
-        const that = this;
-        return this.colors.filter(color => color != that.card?.color);
+        return this.colors.filter(color => color != this.card?.color);
     }
 
     colorAction(color: CardColor) {

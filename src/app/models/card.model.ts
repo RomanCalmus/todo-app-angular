@@ -1,8 +1,8 @@
-import { BehaviorSubject } from "rxjs";
+import { strOrNum } from "../misc/type.utils";
 import { CardItem } from "./card-item.model";
 
 export interface Card {
-    id    : number,
+    id    : strOrNum,
     title : string,
     color : CardColor,
     items : CardItem[],
@@ -11,3 +11,5 @@ export interface Card {
 
 export type CardColor = 'yellow' | 'green' | 'red' | 'gray';
 export const CardColors: Array<CardColor> = ['yellow', 'green', 'red', 'gray'];
+
+export const PlaceholderTitle = 'Список без названия';

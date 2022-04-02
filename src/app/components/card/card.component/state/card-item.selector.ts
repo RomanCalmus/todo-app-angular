@@ -1,5 +1,5 @@
 import { createSelector} from "@ngrx/store";
-import { selectCard, selectCards, selectCardsFeature } from "./card.selectors";
+import { selectCards, selectCardsFeature } from "./card.selectors";
 
 export const selectCardItems = createSelector(
     selectCards,

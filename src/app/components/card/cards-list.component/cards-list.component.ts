@@ -1,8 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { Card } from "src/app/models/card.model";
-import { Events as CardListEvents, CardsListService, PlaceholderTitle } from "src/app/services/cards-list.service";
-import { selectCardAction } from "../card.component/state/card.actions";
+import { Card, PlaceholderTitle } from "src/app/models/card.model";
+import { CardsListEvents } from "src/app/services/cards-list.service";
 import { selectCards } from "../card.component/state/card.selectors";
 import { openCardWindow } from "../card.component/state/card.window.actions";
 
@@ -18,12 +17,13 @@ export class CardsListComponent {
 
     constructor(private store: Store) {}
 
-    openCard(card: Card) {
-        this.store.dispatch(selectCardAction({card}));
-        this.store.dispatch(openCardWindow());
+    openCard(card: Card, event: MouseEvent) {
+        event.stopPropagation();
+
+        this.store.dispatch(openCardWindow({card}));
     }
 
     ngOnInit() {
-        this.store.dispatch({ type: CardListEvents.LoadCards });
+        this.store.dispatch({ type: CardsListEvents.LoadCards });
     }
 }

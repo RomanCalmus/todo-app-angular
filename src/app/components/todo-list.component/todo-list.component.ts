@@ -1,10 +1,7 @@
 import { Component, Input, Output } from '@angular/core';
 //import { TodoList } from '../../classes/todo-list';
 import { CardItem, CardItems } from 'src/app/models/card-item.model';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectCardItems } from '../card/card.component/state/card-item.selector';
-import { selectCardsFeature } from '../card/card.component/state/card.selectors';
 import { Card } from 'src/app/models/card.model';
 
 @Component({
@@ -13,15 +10,8 @@ import { Card } from 'src/app/models/card.model';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListReadOnlyComponent {   
-  //@Input() items$!: BehaviorSubject<CardItem[]>
   @Input() card!: Card
   constructor(private store: Store) {}
-
-  ngOnInit() {
-    // this.items$.subscribe(state => {
-    //   state;
-    // })
-  }
 
   checkbox(event: MouseEvent) {
     event.preventDefault();
