@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, map, mergeMap, of } from "rxjs";
-import { getCardsList } from "../components/card/card.component/state/card.actions";
+import { catchError, exhaustMap, map, mergeMap, Observable, of } from "rxjs";
+import { getCardsList, removeCard } from "../components/card/card.component/state/card.actions";
 import { CardsListService, Events as CardListEvents} from "../services/cards-list.service";
 
 @Injectable()
@@ -13,10 +13,23 @@ export class CardEffects  {
     loadCards$ = createEffect(() => 
         this.actions$.pipe(
             ofType(CardListEvents.LoadCards),
-            mergeMap(() => this.cardService.getCards() .pipe(
+            mergeMap(() => this.cardService.getCards().pipe(
                     map(cards => (getCardsList({cards}))),
                     catchError(() => of({type: CardListEvents.LoadedError}))
                 ))
             )
         );
+    
+    removeCard$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(CardListEvents.RemoveCard),
+            exhaustMap( (action: any) => {
+                return this.cardService.removeCard(action.card).pipe(
+                    //map(_ => ({ type: CardListEvents.RemoveCardSuccess })),
+                    map(_ => ({ type: CardListEvents.LoadCards })),
+                    catchError(() => of({type: CardListEvents.LoadedError}))
+                )
+            })
+        )
+    );
 }

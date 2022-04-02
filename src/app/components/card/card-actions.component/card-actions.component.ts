@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Card, CardColor, CardColors } from "src/app/models/card.model";
-import { removeCard } from "../card.component/state/card.actions";
+import { Events as CardListEvents } from "../../../services/cards-list.service"
 
 
 
@@ -18,7 +18,7 @@ export class CardActionsComponent {
     removeAction(event: MouseEvent) {
         if (!this.card) throw new Error('card isn\'t provided');
         event.stopPropagation();
-        this.store.dispatch(removeCard({card: this.card}));
+        this.store.dispatch({ type: CardListEvents.RemoveCard, card: this.card })
     }
 
     stopClick(event: MouseEvent) {
