@@ -3,6 +3,7 @@
 //libs
 import { Material } from './modules/material.module';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 //tools
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -32,9 +33,9 @@ import { cardInputReducer } from './components/card/card-input.component/state/c
 import { staticInputReducer } from './components/static-input.component/state/static-input.reducers';
 
 //app reducers
-import { cardsReducer } from './components/card/card.component/state/card.reducers';
+import { cardsFeatureReducer } from './components/card/card.component/state/cards.reducers';
 import { cardWindowReducer } from './components/card/card.component/state/card.window.reducers';
-
+import { CardEffects } from './effects/card.effects';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { cardWindowReducer } from './components/card/card.component/state/card.w
     ...Material.modules,
     StoreModule.forRoot({
       cardinput: cardInputReducer,
-      cards: cardsReducer,
+      cardsFeature: cardsFeatureReducer,
       cardWindow: cardWindowReducer,
       staticInput: staticInputReducer
     }),
@@ -66,6 +67,7 @@ import { cardWindowReducer } from './components/card/card.component/state/card.w
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
+    EffectsModule.forRoot([CardEffects]),
   ],
   providers: [...Material.providers],
   bootstrap: [AppComponent]

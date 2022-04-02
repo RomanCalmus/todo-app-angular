@@ -9,7 +9,8 @@
       <span *ngFor="let tag of card.tags" class="card-tag">{{tag}}</span></mat-card-subtitle> -->
     <mat-card-content>
       <todo-list-readonly *ngIf='readOnly' [card]="card"></todo-list-readonly>
-      <todo-list *ngIf='!readOnly' [isNewEdit]="isNewEdit" [card]="card"></todo-list></mat-card-content>
-    <card-actions (remove)="removeCard()" [card]="card"></card-actions>
+      <todo-list *ngIf='!readOnly' [isNewEdit]="isNewEdit" [card]="card"></todo-list>
+    </mat-card-content>
+    <card-actions [card]="card"></card-actions>
   </div>
 </mat-card>

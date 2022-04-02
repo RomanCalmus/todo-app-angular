@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Store } from "@ngrx/store";
 import { Card, CardColor, CardColors } from "src/app/models/card.model";
+import { removeCard } from "../card.component/state/card.actions";
 
 
 
@@ -9,17 +11,14 @@ import { Card, CardColor, CardColors } from "src/app/models/card.model";
     styleUrls: ['./card-actions.component.scss']
 })
 export class CardActionsComponent {
-    @Input()  card: Card | undefined
-    @Output() remove = new EventEmitter<string>()
-    @Output() color  = new EventEmitter<string>()
+    @Input()  card!: Card
     colors = CardColors
-
-    constructor() {}
+    constructor(private store: Store) {}
 
     removeAction(event: MouseEvent) {
         if (!this.card) throw new Error('card isn\'t provided');
         event.stopPropagation();
-        this.remove.emit();
+        this.store.dispatch(removeCard({card: this.card}));
     }
 
     stopClick(event: MouseEvent) {
@@ -35,6 +34,5 @@ export class CardActionsComponent {
         if (!this.card) throw new Error('card isn\'t provided');
         const card = this.card;
         setTimeout(() => card.color = color, 130);
-        this.color.emit(color);
     }
 }

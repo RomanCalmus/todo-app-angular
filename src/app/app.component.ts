@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { filter, map, merge, skipWhile } from 'rxjs';
+import { combineLatest, filter, map, merge } from 'rxjs';
 import { closeCardInput } from './components/card/card-input.component/state/card-input.actions';
 import { CardDialogComponent } from './components/card/card.component/card.component';
-import { cloeCardWindow, getCardsList } from './components/card/card.component/state/card.actions';
-import { selectCards, selectCardWindow } from './components/card/card.component/state/card.selectors';
-import { cardWindowState } from './components/card/card.component/state/card.window.reducers';
+import { getCardsList } from './components/card/card.component/state/card.actions';
+import { selectCard, selectCardWindow } from './components/card/card.component/state/card.selectors';
+import { closeCardWindow } from './components/card/card.component/state/card.window.actions';
 import { Card } from './models/card.model';
 import { CardsListService } from './services/cards-list.service';
 import { ClickService } from './services/click-service';
@@ -17,8 +17,8 @@ import { ClickService } from './services/click-service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  cards$  = this.store.select(selectCards);
   window$ = this.store.select(selectCardWindow);
+  selectedCard$ = this.store.select(selectCard);
   
   constructor(
     protected clickService: ClickService,
@@ -28,7 +28,6 @@ export class AppComponent {
                                                                                                   ) {}
 
   ngOnInit() {
-    this.cardList.getCards().subscribe(cards => this.store.dispatch(getCardsList({cards})));
     this.subscribeToWindowState();
   }
 
@@ -42,18 +41,20 @@ export class AppComponent {
 
     const clicks = dialog.backdropClick();
     const keybordEvents = dialog.keydownEvents().pipe(filter(({key}) => key === 'Escape'));
+    
     merge(clicks, keybordEvents)
-      .subscribe(() => this.store.dispatch(cloeCardWindow()))
+      .subscribe(() => this.store.dispatch(closeCardWindow()));
   }
 
   private subscribeToWindowState() {
-    this.window$.pipe(
-      filter( (state: cardWindowState) => state.isOpen != false),
-      map(state => state.card as Card)
-    ).subscribe(card => this.openCardWindow(card));
+    combineLatest([
+      this.window$.pipe( filter( state => state !== false)), 
+      this.selectedCard$
+    ]).pipe(map( ([state, cards]) => cards[0]))
+      .subscribe(card => this.openCardWindow(card));
 
     this.window$.pipe(
-      filter( (state: cardWindowState) => state.isOpen == false)
-    ).subscribe(_ => this.modalDialog.closeAll())
+      filter( state => state === false)
+    ).subscribe(_ => this.modalDialog.closeAll());
   }
 }

@@ -2,9 +2,9 @@
 
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { random } from 'src/app/misc/colors';
-import { Card, CardColors } from 'src/app/models/card.model';
+import { Card, CardColor, CardColors } from 'src/app/models/card.model';
 import { CardsListService } from 'src/app/services/cards-list.service';
 import { ClickService } from 'src/app/services/click-service';
 import { closeCardInput, openCardInput } from './state/card-input.actions';
@@ -20,7 +20,8 @@ export function makeRandomColor() {
 })
 export class CardInputComponent {
   state$: Observable<boolean>
-  card: Card = {title: '', id: 0, color: 'yellow', items: []};
+  card!: Card;
+  color:CardColor = makeRandomColor()
   title = 'Новый список'
 
   constructor(
@@ -28,25 +29,31 @@ export class CardInputComponent {
     protected outsideMouseEvent: ClickService,
     private store: Store<{cardinput: boolean}>                                        ) {
       
-      //this.card = this.cardsService.createCard('', makeRandomColor());
-      // this.cardsService.getTodoListByCardId(this.card.id).createItem();
       this.outsideMouseEvent.clickEvent.subscribe(this.onBlur.bind(this));
       this.state$ = store.select('cardinput');
+      this.state$.pipe(filter(state => state === true)).subscribe(_ => this.onOpen());
+      this.state$.pipe(filter(state => state !== true)).subscribe(_ => this.onClose());
   }
-  private open() {
+  
+  open() {
     this.store.dispatch(openCardInput());
   }
 
-  private close() {
+  close() {
     this.store.dispatch(closeCardInput());
   }
 
-  // private createNewDefaultCard() {
-  //   const prevColor = this.card.color;
-  //   this.card = this.cardsService.createCard();
-  //   this.cardsService.getTodoListByCardId(this.card.id).createItem();
-  //   this.card.color = prevColor;
-  // }
+  remove() {
+    //this.card = undefined;
+  }
+
+  onOpen() {
+    this.card = this.cardsService.createDefaultCard(this.color);
+  }
+
+  private onClose() {
+    
+  }
 
   //isEdited() {
     // let isEdited = false;
@@ -78,13 +85,5 @@ export class CardInputComponent {
 
   onClick(event: MouseEvent) {
     event.stopPropagation();
-  }
-
-  onOpen() {
-    this.open();
-  }
-
-  onRemove() {
-    this.close();
   }
 }

@@ -26,25 +26,21 @@ export class CardDialogComponent {
     styleUrls: ['card.component.scss']
 })
 export class CardComponent {
-    @Input()  card: Card | undefined
+    @Input()  card!: Card
     @Input()  isNewEdit       = false
     @Input()  readOnly        = false
     @Input()  removeAnimation = true
     @Output() remove          = new EventEmitter<string>()  
     defaultTitle              = PlaceholderTitle
     isToRemove                = false
-    constructor (protected cardsService: CardsListService) {}
-
+    constructor () {}
 
     removeCard() {
-        if (!this.card) return;
-        const that = this,
-              card = this.card;
         if (this.removeAnimation) this.isToRemove = true;
 
-        setTimeout(() => {
-            that.cardsService.removeCard(card);
-            that.remove.emit()
-        }, 100);
+        // setTimeout(() => {
+        //     //that.cardsService.removeCard(card);
+        //     //that.remove.emit()
+        // }, 100);
     }
 }

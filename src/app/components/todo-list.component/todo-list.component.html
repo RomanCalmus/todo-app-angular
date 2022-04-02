@@ -1,4 +1,4 @@
-<div *ngIf="card && card.items.length">
+<div>
   <div *ngFor="let cardItem of card.items" [ngClass]="{'checked': cardItem.done, 'current-item': currentEditItem === cardItem}" 
     (click)="editItem(cardItem)" class="todo-item undone"> 
     <input type="checkbox" [checked]="cardItem.done" (click)="toggleCheck(cardItem)">
@@ -9,7 +9,7 @@
 
   <div class="new-task" *ngIf="!isRemoveNewItemButton" [ngClass]="{'hide': !!currentEditItem}" (click)="createNewItem()">+ Новая задача</div>
 
-  <div class="done">
+  <!-- <div class="done">
     <span *ngIf="list.doneItems.length" (click)="isShowDoneItems = !isShowDoneItems">
     <span class="done-title" [ngClass]="{'closed': !isShowDoneItems}">What was already done ({{list.doneItems.length}}):</span></span>
   
@@ -21,5 +21,5 @@
           <span class="remove-item" (click)="removeThisItem(todoItem)">x</span>
         </mat-list>
     </div>
-  </div>
+  </div> -->
 </div>

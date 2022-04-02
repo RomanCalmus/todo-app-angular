@@ -1,12 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
-import { TodoList } from "../classes/todo-list";
+import { BehaviorSubject, map, Observable } from "rxjs";
+import { CardItem, CardItems } from "../models/card-item.model";
 import { Card , CardColor} from "../models/card.model";
 import { cardsUrl } from "./server.config";
 
 let nextId = 0;
-const TodoLists: Map<number, TodoList> = new Map();
 
 @Injectable({
     providedIn: 'root',
@@ -18,13 +17,8 @@ export class CardsListService {
         return this.http.get<Card[]>(cardsUrl).pipe(map(cards => cards || []));
     }
 
-    createCard(title = '', color: CardColor = 'yellow', isRegister = false): void {
-        // const card: Card = {title, id: nextId, color};
-        // TodoLists.set(nextId, new TodoList());
-        // if (isRegister) this.registerCard(card);
-        // nextId++;
-
-        // return card;
+    createDefaultCard(color: CardColor): Card {
+        return {title: '', id: nextId++, color, items: [{text: '', done: false} ]};
     }
 
     registerCard(card: Card) {
@@ -45,3 +39,9 @@ export class CardsListService {
 }
 
 export const PlaceholderTitle = 'Список без названия';
+
+export const Events = {
+    LoadCards: '[Cards List] Load Cards',
+    LoadedSuccess: '[Card List] Cards Loaded Success',
+    LoadedError: '[Card List] Cards Loaded Error',
+}

@@ -1,11 +1,28 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { Card } from "../../../../models/card.model";
-import { cardWindowState } from "./card.window.reducers";
 
-export const selectCards = createFeatureSelector<ReadonlyArray<Card>>('cards');
-export const selectCardWindow = createFeatureSelector<cardWindowState>('cardWindow');
+export interface CardsFeature {
+    cards: Cards,
+    selectedCardId: number
+}
+
+export type Cards = ReadonlyArray<Card>;
+
+export const selectCardsFeature = createFeatureSelector<CardsFeature>('cardsFeature');
+export const selectCardWindow = createFeatureSelector('cardWindow');
+
+export const selectOpenedCard = createSelector(
+    selectCardsFeature,
+    (feature) => feature.selectedCardId
+);
+
+export const selectCards = createSelector(
+    selectCardsFeature,
+    (feature) => feature.cards
+);
 
 export const selectCard = createSelector(
+    selectOpenedCard,
     selectCards,
-    (cards: ReadonlyArray<Card>, id: number) => cards.filter((card: Card) => card.id === id)
+    (id, cards) => cards.filter(card => card.id === id)
 );

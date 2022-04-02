@@ -1,7 +1,7 @@
-<div (click)="onClick($event)" class="new-card" [class]="card.color">
-    <mat-card *ngIf="!(state$ | async)" (click)="onOpen()">
+<div (click)="onClick($event)" class="new-card" [class]="color">
+    <mat-card *ngIf="!(state$ | async)" (click)="open()">
         <mat-card-title >{{title}}</mat-card-title>
     </mat-card>
-    <card *ngIf="state$ | async" (remove)="onRemove()" 
+    <card *ngIf="state$ | async" (remove)="remove()" 
         [isNewEdit]="true" [removeAnimation]="false"  [card]="this.card"></card>
 </div>

@@ -1,7 +1,11 @@
 import { Component, Input, Output } from '@angular/core';
-import { TodoList } from '../../classes/todo-list';
-import { CardsListService } from 'src/app/services/cards-list.service';
-import { Card, CardItem } from 'src/app/models/card.model';
+//import { TodoList } from '../../classes/todo-list';
+import { CardItem, CardItems } from 'src/app/models/card-item.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectCardItems } from '../card/card.component/state/card-item.selector';
+import { selectCardsFeature } from '../card/card.component/state/card.selectors';
+import { Card } from 'src/app/models/card.model';
 
 @Component({
   selector: 'todo-list-readonly',
@@ -9,12 +13,14 @@ import { Card, CardItem } from 'src/app/models/card.model';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListReadOnlyComponent {   
-  list: TodoList = new TodoList();
-  @Input() card: Card | undefined
-  constructor() {}
+  //@Input() items$!: BehaviorSubject<CardItem[]>
+  @Input() card!: Card
+  constructor(private store: Store) {}
 
   ngOnInit() {
-    //this.list = this.lists.getTodoListByCardId(this.cardId);
+    // this.items$.subscribe(state => {
+    //   state;
+    // })
   }
 
   checkbox(event: MouseEvent) {
@@ -28,19 +34,17 @@ export class TodoListReadOnlyComponent {
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListWritebaleComponent {    
+    @Input() card!: Card
     @Input() isNewEdit        = false
-    @Input() card             : Card | undefined
     value                     = ''
     isShowDoneItems           = true
     isRemoveNewItemButton     = false
-    list                      = new TodoList();
     currentEditItem : CardItem | undefined
-
-    constructor() {}
+    constructor(private store: Store) {}
 
     toggleCheck(item: CardItem) {
-      this.clearCurrentitemEdit(); 
-      this.list.toggleItem(item);
+      // this.clearCurrentitemEdit(); 
+      // this.list.toggleItem(item);
     }
 
     onKeyDownEdit(event: KeyboardEvent) {
@@ -80,11 +84,11 @@ export class TodoListWritebaleComponent {
     }
 
     onBlur() {
-      const that = this;
-      const bluredItem = this.currentEditItem;
-      setTimeout(() => {
-        if (bluredItem === that.currentEditItem) that.clearCurrentitemEdit();
-      }, 100);
+      // const that = this;
+      // const bluredItem = this.currentEditItem;
+      // setTimeout(() => {
+      //   if (bluredItem === that.currentEditItem) that.clearCurrentitemEdit();
+      // }, 100);
     }
 
     removeThisItem(item: CardItem) {
@@ -92,20 +96,20 @@ export class TodoListWritebaleComponent {
     }
 
     clearCurrentitemEdit() {
-      const that = this;
-      this.currentEditItem = undefined;
-      setTimeout(() => that.isRemoveNewItemButton = false);
+      // const that = this;
+      // this.currentEditItem = undefined;
+      // setTimeout(() => that.isRemoveNewItemButton = false);
     }
 
     editItem(item: CardItem) {
-      if (this.currentEditItem === item) return;
-      this.currentEditItem = item;
+      // if (this.currentEditItem === item) return;
+      // this.currentEditItem = item;
     }
 
     createNewItem() {
-      const item = this.list.createItem();
-      this.editItem(item);
-      this.isRemoveNewItemButton = true;
+      // const item = this.list.createItem();
+      // this.editItem(item);
+      // this.isRemoveNewItemButton = true;
     }
 
     ngOnInit(): void {
