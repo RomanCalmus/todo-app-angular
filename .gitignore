@@ -40,3 +40,4 @@ Thumbs.db
 #
 src/server/go
 src/server/rust
+src/server/db_development.json

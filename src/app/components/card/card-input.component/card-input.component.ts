@@ -1,5 +1,4 @@
 'use strict';
-
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { filter, Observable } from 'rxjs';
@@ -27,7 +26,7 @@ export class CardInputComponent {
   constructor(
     protected cardsService: CardsListService,
     protected outsideMouseEvent: ClickService,
-    private store: Store<{cardinput: boolean}>                                        ) {
+    private store: Store<{cardinput: boolean}>                                          ) {
       
       this.outsideMouseEvent.clickEvent.subscribe(this.onBlur.bind(this));
       this.state$ = store.select('cardinput');
