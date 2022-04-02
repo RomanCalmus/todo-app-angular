@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { filter, Observable } from 'rxjs';
 import { random } from 'src/app/misc/colors';
 import { Card, CardColor, CardColors } from 'src/app/models/card.model';
-import { CardsListService } from 'src/app/services/cards-list.service';
+import { CardsListService, Events as CardListEvents } from 'src/app/services/cards-list.service';
 import { ClickService } from 'src/app/services/click-service';
 import { closeCardInput, openCardInput } from './state/card-input.actions';
 
@@ -21,6 +21,7 @@ export class CardInputComponent {
   state$: Observable<boolean>
   card!: Card;
   color:CardColor = makeRandomColor()
+  isSave = false
   title = 'Новый список'
 
   constructor(
@@ -36,14 +37,19 @@ export class CardInputComponent {
   
   open() {
     this.store.dispatch(openCardInput());
+    this.isSave = true;
   }
 
   close() {
+    if (this.isSave) {
+      this.store.dispatch({ type: CardListEvents.CreateCard, card: this.card });
+    }
     this.store.dispatch(closeCardInput());
+    this.isSave = false;
   }
 
   remove() {
-    //this.card = undefined;
+
   }
 
   onOpen() {
@@ -51,34 +57,12 @@ export class CardInputComponent {
   }
 
   private onClose() {
-    
+    this.close();
   }
 
-  //isEdited() {
-    // let isEdited = false;
-    // const list = this.cardsService.getTodoListByCardId(this.card.id);
-   
-    // if (this.card.title) {
-    //   isEdited = true;
-    // }
-
-    // if (list.items.length !== 1 || list.items[0].title !== '') {
-    //   isEdited = true;
-    // }
-
-    // return isEdited;
-//  }
-
-  //registerCard() {
-    // if (this.isEdited()) {
-    //   this.cardsService.registerCard(this.card);
-    //   this.createNewDefaultCard();
-    // }
-  //}
 
   //Event handlers
   onBlur() {
-  //    this.registerCard();
     this.close();
   }
 

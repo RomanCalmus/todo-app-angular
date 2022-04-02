@@ -32,4 +32,16 @@ export class CardEffects  {
             })
         )
     );
+
+    createCard$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(CardListEvents.CreateCard),
+            exhaustMap( (action: any) => {
+                return this.cardService.createCard(action.card).pipe(
+                    map(_ => ({ type: CardListEvents.LoadCards })),
+                    catchError(() => of({type: CardListEvents.CreateCardError}))
+                )
+            })
+        )
+    );
 }

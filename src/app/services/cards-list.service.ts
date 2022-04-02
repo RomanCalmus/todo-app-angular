@@ -4,8 +4,6 @@ import { map, Observable } from "rxjs";
 import { Card , CardColor} from "../models/card.model";
 import { cardsUrls } from "./server.config";
 
-let nextId = 0;
-
 @Injectable({
     providedIn: 'root',
 })
@@ -16,12 +14,12 @@ export class CardsListService {
         return this.http.get<Card[]>(cardsUrls.cards()).pipe(map(cards => cards || []));
     }
 
-    createCard(card: Card) {
-        return this.http.post<Card[]>(cardsUrls.card(card.id), {card});
+    createCard({title, items, color}: any) {
+        return this.http.post(cardsUrls.cards(), {title, items, color});
     }
 
     removeCard({id}: any) {
-        return this.http.delete<Card[]>(cardsUrls.card(id));
+        return this.http.delete(cardsUrls.card(id));
     }
 
     getTodoListByCardId(id: number): void {
@@ -31,7 +29,7 @@ export class CardsListService {
     }
 
     createDefaultCard(color: CardColor): Card {
-        return {title: '', id: nextId++, color, items: [{text: '', done: false} ]};
+        return {title: '', id: -1, color, items: [{text: '', done: false} ]};
     }
 }
 
@@ -39,8 +37,13 @@ export const PlaceholderTitle = 'Список без названия';
 
 export const Events = {
     LoadCards: '[Cards List] Load Cards',
-    LoadedSuccess: '[Card List] Cards Loaded Success',
-    LoadedError: '[Card List] Cards Loaded Error',
-    RemoveCard: '[Card List] Cards Remove Card',
-    RemoveCardSuccess: '[Card List] Cards Remove Card Success'
+    LoadedSuccess: '[Card List] Loaded Success',
+    LoadedError: '[Card List] Loaded Error',
+
+    RemoveCard: '[Card List] Remove Card',
+    RemoveCardSuccess: '[Card List] Remove Card Success',
+
+    CreateCard: '[Card List] Create Card',
+    CreateCardSuccess: '[Card List] Create Card Success',
+    CreateCardError: '[Card List] Create Error',
 }

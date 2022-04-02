@@ -3,8 +3,6 @@ import { Store } from "@ngrx/store";
 import { Card, CardColor, CardColors } from "src/app/models/card.model";
 import { Events as CardListEvents } from "../../../services/cards-list.service"
 
-
-
 @Component({
     selector: 'card-actions',
     templateUrl: './card-actions.component.html',

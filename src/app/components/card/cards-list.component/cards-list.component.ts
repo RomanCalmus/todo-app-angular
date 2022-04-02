@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { Actions, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { Card } from "src/app/models/card.model";
 import { Events as CardListEvents, CardsListService, PlaceholderTitle } from "src/app/services/cards-list.service";
